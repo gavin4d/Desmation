@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
+    <!--https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6-->
     <script src="https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
     <div id="calculator" style="width: 600px; height: 400px;"></div>
     <button id="screenshot-button">Capture Screenshot</button>
     <img id="img"/>
     <script>
-    
         
         var elt = document.getElementById('calculator');
         var calculator = Desmos.GraphingCalculator(elt,{
             expressions : true,
-            border : false,
-            zoomButtons : false,
-            settingsMenu : false,
-            showResetButtonOnGraphpaper : false});
+            border : true,
+            zoomButtons : true,
+            settingsMenu : true,
+            showResetButtonOnGraphpaper : false,
+            pasteGraphLink : true});
             
         calculator.setExpression({ id: 'graph1', latex: 'y=x^2' });
 
