@@ -2,16 +2,13 @@
 <html>
     <!--https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6-->
     <script src="https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
-    <div id="calculator" style="width: 600px; height: 400px;"></div>
-    <button id="screenshot-button">Capture Screenshot</button>
-    <button id="view-button">Show Old Screenshot</button>
-    <button id="save-button">Save Screenshot</button>
-    <img id="img"/>
 
     <div id="calculator" style="width: 1200px; height: 800px; margin: auto; padding: 50px"></div>
 
     <div id="screenshot" style="margin: auto; width: 30%; padding: 50px">
         <button id="screenshot-button">Capture Screenshot</button>
+        <button id="view-button">Show Old Screenshot</button>
+        <button id="save-button">Save Screenshot</button>
         <img id="img"/>
     </div>
     <script>
@@ -47,6 +44,7 @@
 
             calculator.asyncScreenshot({
                 mode: 'stretch',
+                format: 'svg',
                 width: 800,
                 height: 800,
                 mathBounds: { left: -5, right: 5, top: 5, bottom:-5 }
