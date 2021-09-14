@@ -7,6 +7,13 @@
     <button id="view-button">Show Old Screenshot</button>
     <button id="save-button">Save Screenshot</button>
     <img id="img"/>
+
+    <div id="calculator" style="width: 1200px; height: 800px; margin: auto; padding: 50px"></div>
+
+    <div id="screenshot" style="margin: auto; width: 30%; padding: 50px">
+        <button id="screenshot-button">Capture Screenshot</button>
+        <img id="img"/>
+    </div>
     <script>
         
         var elt = document.getElementById('calculator');
@@ -40,8 +47,8 @@
 
             calculator.asyncScreenshot({
                 mode: 'stretch',
-                width: 1000,
-                height: 1000,
+                width: 800,
+                height: 800,
                 mathBounds: { left: -5, right: 5, top: 5, bottom:-5 }
             }, setImageSrc);
 
