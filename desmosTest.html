@@ -9,7 +9,7 @@
         
         var elt = document.getElementById('calculator');
         var calculator = Desmos.GraphingCalculator(elt,{
-            expressions : false,
+            expressions : true,
             border : false,
             zoomButtons : false,
             settingsMenu : false,
@@ -31,10 +31,10 @@
         function captureScreenshots () {
 
             calculator.asyncScreenshot({
-                mode: 'preserveX',
+                mode: 'stretch',
                 width: 1000,
                 height: 1000,
-                mathBounds: { left: -5, right: 5 }
+                mathBounds: { left: -5, right: 5, top: 5, bottom:-5 }
             }, setImageSrc);
         }
 
