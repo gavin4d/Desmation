@@ -2,6 +2,12 @@
 <html>
     <!--https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6-->
     <script src="https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+    <div id="calculator" style="width: 600px; height: 400px;"></div>
+    <button id="screenshot-button">Capture Screenshot</button>
+    <button id="view-button">Show Old Screenshot</button>
+    <button id="save-button">Save Screenshot</button>
+    <img id="img"/>
+
     <div id="calculator" style="width: 1200px; height: 800px; margin: auto; padding: 50px"></div>
 
     <div id="screenshot" style="margin: auto; width: 30%; padding: 50px">
@@ -15,8 +21,6 @@
             expressions : true,
             border : true,
             zoomButtons : true,
-            settingsMenu : true,
-            showResetButtonOnGraphpaper : false,
             pasteGraphLink : true});
             
         calculator.setExpression({ id: 'graph1', latex: 'y=x^2' });
@@ -24,6 +28,7 @@
         captureScreenshots();
 
         function setImageSrc(data) {
+
             var img = document.getElementById('img');
             img.src = data;
 
@@ -34,12 +39,49 @@
 
         function captureScreenshots () {
 
+            calculator.updateSettings({
+                showXAxis : false,
+                showYAxis : false,
+                showGrid : false
+            });
+
             calculator.asyncScreenshot({
                 mode: 'stretch',
                 width: 800,
                 height: 800,
                 mathBounds: { left: -5, right: 5, top: 5, bottom:-5 }
             }, setImageSrc);
+
+            calculator.updateSettings({
+                showXAxis : true,
+                showYAxis : true,
+                showGrid : true
+            });
+            
+        }
+
+        var btnElt2 = document.getElementById('save-button');
+        btnElt2.addEventListener('click', saveView);
+
+        function saveView() {
+
+            var data = document.getElementById("img").src;
+            //console.log(data);
+            localStorage.setItem("img", data);
+
+        }
+
+        var btnElt2 = document.getElementById('view-button');
+        btnElt2.addEventListener('click', showOldView);
+
+        function showOldView() {
+
+            let fileReader = new FileReader();
+            var data = localStorage.getItem("img");
+            //console.log(data);
+            var img = document.getElementById('img');
+            img.src = data;
+
         }
 
         
