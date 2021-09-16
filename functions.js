@@ -1,35 +1,14 @@
 var zip = JSZip();
 
-var elt = document.getElementById('calculator');
-var calculator = Desmos.GraphingCalculator(elt,{
-    expressions : true,
-    border : true,
-    zoomButtons : true,
-    pasteGraphLink : true});
-
 var frameNumber = 0;
 
-var btnElt = document.getElementById('screenshot-button');
-btnElt.addEventListener('click', captureScreenshot);
-
-var btnElt2 = document.getElementById('view-button');
-btnElt2.addEventListener('click', loadFrame);
-
-var btnElt3 = document.getElementById('save-button');
-btnElt3.addEventListener('click', saveFrame);
-
-var btnElt4 = document.getElementById('record-button');
-btnElt4.addEventListener('click', record);
-
-var btnElt5 = document.getElementById('download-button');
-btnElt5.addEventListener('click', function () {
-    zip.generateAsync({type:"blob"}).then(function (blob) { // 1) generate the zip file
-        download(URL.createObjectURL(blob), "hello.zip");   // 2) trigger the download
+function downloadZip() {
+    zip.generateAsync({type:"blob"}).then(function (blob) {
+        download(URL.createObjectURL(blob), "output.zip")
     }, function (err) {
         btnElt5.text(err);
     })
 }
-);
 
 const download = (path, filename) => {
     // Create a new link
@@ -46,15 +25,6 @@ const download = (path, filename) => {
     // Remove element from DOM
     document.body.removeChild(anchor);
 }; 
-    
-calculator.setExpression({ id: '1', latex: 'y=ax^2' });
-
-function setImageSrc(data) {
-
-        var img = document.getElementById('image');
-        img.innerHTML = data;
-
-}
 
 function captureScreenshot () {
 
@@ -70,35 +40,13 @@ function captureScreenshot () {
         width: 800,
         height: 800,
         mathBounds: { left: -5, right: 5, top: 5, bottom:-5 }
-    }, setImageSrc);
+    }, function (data) {download(URL.createObjectURL(new Blob([data], {type: "image/svg"})), "output.svg")});
 
     calculator.updateSettings({
         showXAxis : true,
         showYAxis : true,
         showGrid : true
     });
-
-}
-
-function saveFrame(name) {
-    //console.log(calculator.getExpressions());
-    calculator.setExpression({
-        id: '2',
-        color: '#bbbbbb'
-    });
-
-    var data = document.getElementById("image").innerHTML;
-    //console.log(data);
-    sessionStorage.setItem("img", data);
-
-}
-
-function loadFrame() {
-
-    var data = sessionStorage.getItem("img");
-    //console.log(data);
-    var img = document.getElementById('image');
-    img.innerHTML = data;
 
 }
 
@@ -126,7 +74,7 @@ function record() {
 function recordRepeat(data) {
 
     //sessionStorage.setItem('Frame_'+ ('0000' + frameNumber).slice(-4), data);
-    zip.file('Frame_'+ ('0000' + frameNumber).slice(-4) + '.svg', data);
+    zip.file('frame_'+ ('00000' + frameNumber).slice(-5) + '.svg', data);
 
     document.getElementById("image").innerHTML = data;
     
@@ -138,6 +86,7 @@ function recordRepeat(data) {
 
     } else {
         frameNumber = 0
+        zip.file('Convert to mp4.sh', 'ffmpeg -r 10 -i frame_%05d.svg -c:v libx264 output.mp4');
     }
 
 }
