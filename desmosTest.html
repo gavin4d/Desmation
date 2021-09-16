@@ -10,79 +10,9 @@
         <button id="screenshot-button">Capture Screenshot</button>
         <button id="view-button">Show Old Screenshot</button>
         <button id="save-button">Save Screenshot</button>
+        <button id="record-button">Record</button>
         <img id="img"/>
+        <div id="image"></div>
     </div>
-    <script>
-        
-        var elt = document.getElementById('calculator');
-        var calculator = Desmos.GraphingCalculator(elt,{
-            expressions : true,
-            border : true,
-            zoomButtons : true,
-            pasteGraphLink : true});
-            
-        calculator.setExpression({ id: 'graph1', latex: 'y=x^2' });
-
-        captureScreenshots();
-
-        function setImageSrc(data) {
-
-            var img = document.getElementById('img');
-            img.src = data;
-
-        }
-
-        var btnElt = document.getElementById('screenshot-button');
-        btnElt.addEventListener('click', captureScreenshots);
-
-        function captureScreenshots () {
-
-            calculator.updateSettings({
-                showXAxis : false,
-                showYAxis : false,
-                showGrid : false
-            });
-
-            calculator.asyncScreenshot({
-                mode: 'stretch',
-                format: 'svg',
-                width: 800,
-                height: 800,
-                mathBounds: { left: -5, right: 5, top: 5, bottom:-5 }
-            }, setImageSrc);
-
-            calculator.updateSettings({
-                showXAxis : true,
-                showYAxis : true,
-                showGrid : true
-            });
-            
-        }
-
-        var btnElt2 = document.getElementById('save-button');
-        btnElt2.addEventListener('click', saveView);
-
-        function saveView() {
-
-            var data = document.getElementById("img").src;
-            //console.log(data);
-            localStorage.setItem("img", data);
-
-        }
-
-        var btnElt2 = document.getElementById('view-button');
-        btnElt2.addEventListener('click', showOldView);
-
-        function showOldView() {
-
-            let fileReader = new FileReader();
-            var data = localStorage.getItem("img");
-            //console.log(data);
-            var img = document.getElementById('img');
-            img.src = data;
-
-        }
-
-        
-    </script>
+    <script src="functions.js"></script>
 </html>
