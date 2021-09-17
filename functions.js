@@ -76,11 +76,13 @@ function record() {
 
 function recordRepeat(data) {
 
-    //sessionStorage.setItem('Frame_'+ ('0000' + frameNumber).slice(-4), data);
-    var newData = changeSvgColors(data);
-    zip.file('output/frame_'+ ('00000' + frameNumber).slice(-5) + '.svg', newData);
+    var image = document.getElementById("image");
+    image.innerHTML = data;
 
-    document.getElementById("image").innerHTML = newData;
+    //sessionStorage.setItem('Frame_'+ ('0000' + frameNumber).slice(-4), data);
+    changeSvgColors(image);
+    zip.file('output/frame_'+ ('00000' + frameNumber).slice(-5) + '.svg', image.innerHTML);
+
     
     frameNumber ++;
 
@@ -105,13 +107,30 @@ function updateViewSettings(boolean) {
 
 }
 
-function changeSvgColors(svgData) {
+function changeSvgColors(svg) {
 
-    return svgData.replace('<rect fill="white', '<rect fill="#' + backgroundColor)
-    .replace('fill="none" stroke="rgb(0,0,0)', 'fill="none" stroke="#' + gridColor)
-    .replace('<text fill="none" stroke="#ffffff', '<text fill="none" stroke="#' + backgroundColor)
-    .replace('<text fill="#000000" stroke="none"', '<text fill="#' + gridColor + '" stroke="none"');
-    // really bad code that doesn't check what it is changing 
-    // and relies on the formatting provided by desmos
-    //TODO: fix this bad code
+    var background = svg.getElementsByClassName('dcg-svg-background')[0];
+    background.setAttribute('fill', '#' + backgroundColor);
+    
+    var classArray = svg.getElementsByClassName('dcg-svg-minor-gridline');
+    for (i = 0; i < classArray.length; i++) {
+        classArray[i].setAttribute('stroke', '#' + gridColor);
+    }
+
+    classArray = svg.getElementsByClassName('dcg-svg-major-gridline');
+    for (i = 0; i < classArray.length; i++) {
+        classArray[i].setAttribute('stroke', '#' + gridColor);
+    }
+
+    classArray = svg.getElementsByClassName('dcg-svg-axis-line');
+    for (i = 0; i < classArray.length; i++) {
+        classArray[i].setAttribute('stroke', '#' + gridColor);
+    }
+
+    classArray = svg.getElementsByClassName('dcg-svg-axis-value');
+    for (i = 0; i < classArray.length; i++) {
+        classArray[i].childNodes[0].setAttribute('stroke', '#' + backgroundColor);
+        classArray[i].childNodes[1].setAttribute('fill', '#' + gridColor);
+    }
+    
 }
