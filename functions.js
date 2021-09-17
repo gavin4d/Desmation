@@ -40,7 +40,7 @@ function captureScreenshot () {
         width: 800,
         height: 800,
         mathBounds: { left: -5, right: 5, top: 5, bottom:-5 }
-    }, function (data) {download(URL.createObjectURL(new Blob([data], {type: "image/svg"})), "output.svg")});
+    }, function (data) {download(URL.createObjectURL(new Blob([changeBackgroundColor(data, "bbbbbb")], {type: "image/svg"})), "output.svg")});
 
     calculator.updateSettings({
         showXAxis : true,
@@ -74,9 +74,10 @@ function record() {
 function recordRepeat(data) {
 
     //sessionStorage.setItem('Frame_'+ ('0000' + frameNumber).slice(-4), data);
-    zip.file('frame_'+ ('00000' + frameNumber).slice(-5) + '.svg', data);
+    var newData = changeBackgroundColor(data, 'bbbbbb')
+    zip.file('frame_'+ ('00000' + frameNumber).slice(-5) + '.svg', newData);
 
-    document.getElementById("image").innerHTML = data;
+    //document.getElementById("image").innerHTML = data;
     
     frameNumber ++;
 
@@ -99,4 +100,12 @@ function updateViewSettings(boolean) {
         showGrid : boolean
     });
 
+}
+
+function changeBackgroundColor(svgData, color) {
+
+    return svgData.replace('<rect fill="white', '<rect fill="#' + color)
+    // really bad code that doesn't check what it is changing 
+    // and relies on the formatting provided by desmos
+    //TODO: fix this bad code
 }
