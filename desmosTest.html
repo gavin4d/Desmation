@@ -1,88 +1,43 @@
 <!DOCTYPE html>
-<!--Learning git!-->
 <html>
     <!--https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6-->
     <script src="https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
-  
-    <div id="calculator" style="width: 1200px; height: 800px; margin: auto; padding: 50px"></div>
-
-    <div id="screenshot" style="margin: auto; width: 30%; padding: 50px">
+    <script src="jszip.js"></script>
+    <script src="functions.js"></script>
+    
+    <div id="screenshot" style="margin: auto; width: 30%; padding: 16px">
         <button id="screenshot-button">Capture Screenshot</button>
-        <button id="view-button">Show Old Screenshot</button>
-        <button id="save-button">Save Screenshot</button>
-        <img id="img"/>
+        <button id="record-button">Record</button>
+        <button id="download-button">download</button>
+        <div id="image"></div>
     </div>
-    <script>
-        
-        var elt = document.getElementById('calculator');
-        var calculator = Desmos.GraphingCalculator(elt,{
-            expressions : true,
-            border : true,
-            zoomButtons : true,
-            pasteGraphLink : true});
-            
-        calculator.setExpression({ id: 'graph1', latex: 'y=x^2' });
 
-        captureScreenshots();
+    <div id="calculator" style="width: 1200px; height: 800px; margin: auto; padding: 16px"></div>
 
-        function setImageSrc(data) {
+    <div>
+        <form>
+            <label for="bcolor">Background color (hex):</label><br>
+            <input type="text" id="bcolor" name="bcolor"><br>
+            <label for="gcolor">Grid color (hex):</label><br>
+            <input type="text" id="gcolor" name="gcolor"><br>
+            <label for="framerate">Framerate:</label><br>
+            <input type="text" id="framerate" name="framerate"><br>
+            <label for="xPixels">X Pixels:</label><br>
+            <input type="text" id="xPixels" name="xPixels"><br>
+            <label for="yPixels">Y Pixels:</label><br>
+            <input type="text" id="yPixels" name="yPixels"><br>
+            <label for="xMathSize">X Math size:</label><br>
+            <input type="text" id="xMathSize" name="xMathSize"><br>
+            <label for="yMathSize">Y Math size:</label><br>
+            <input type="text" id="yMathSize" name="yMathSize"><br>
+            <label for="numFrames">Number of frames:</label><br>
+            <input type="text" id="numFrames" name="numFrames"><br>
+            <label for="initalValue">Inital value:</label><br>
+            <input type="text" id="initalValue" name="initalValue"><br>
+            <label for="step">Step size:</label><br>
+            <input type="text" id="step" name="step"><br>
+        </form> 
+    </div>
 
-            var img = document.getElementById('img');
-            img.src = data;
-
-        }
-
-        var btnElt = document.getElementById('screenshot-button');
-        btnElt.addEventListener('click', captureScreenshots);
-
-        function captureScreenshots () {
-
-            calculator.updateSettings({
-                showXAxis : false,
-                showYAxis : false,
-                showGrid : false
-            });
-
-            calculator.asyncScreenshot({
-                mode: 'stretch',
-                format: 'svg',
-                width: 800,
-                height: 800,
-                mathBounds: { left: -5, right: 5, top: 5, bottom:-5 }
-            }, setImageSrc);
-
-            calculator.updateSettings({
-                showXAxis : true,
-                showYAxis : true,
-                showGrid : true
-            });
-            
-        }
-
-        var btnElt2 = document.getElementById('save-button');
-        btnElt2.addEventListener('click', saveView);
-
-        function saveView() {
-
-            var data = document.getElementById("img").src;
-            //console.log(data);
-            localStorage.setItem("img", data);
-
-        }
-
-        var btnElt2 = document.getElementById('view-button');
-        btnElt2.addEventListener('click', showOldView);
-
-        function showOldView() {
-
-            let fileReader = new FileReader();
-            var data = localStorage.getItem("img");
-            //console.log(data);
-            var img = document.getElementById('img');
-            img.src = data;
-
-        }
-
-        
-    </script>
+    <script src="interface.js"></script>
 </html>
