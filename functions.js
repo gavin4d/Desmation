@@ -1,3 +1,13 @@
+var backgroundColor = 'bbbb00';
+var framerate = 30;
+var xPixels = 800;
+var yPixels = 800;
+var xMathSize = 10;
+var yMathSize = 10;
+var numFrames = 10;
+var initalValue = 0;
+var step = 1;
+
 var zip = JSZip();
 
 var frameNumber = 0;
@@ -28,25 +38,23 @@ const download = (path, filename) => {
 
 function captureScreenshot () {
 
-    calculator.updateSettings({
-        showXAxis : false,
-        showYAxis : false,
-        showGrid : false
-    });
+    backgroundColor = document.getElementById('bcolor').value
+    xPixels = document.getElementById('xPixels').value
+    yPixels = document.getElementById('yPixels').value
+    xMathSize = document.getElementById('xMathSize').value
+    yMathSize = document.getElementById('yMathSize').value
+    
+    updateViewSettings(false);
 
     calculator.asyncScreenshot({
         mode: 'stretch',
         format: 'svg',
-        width: 800,
-        height: 800,
-        mathBounds: { left: -5, right: 5, top: 5, bottom:-5 }
-    }, function (data) {download(URL.createObjectURL(new Blob([changeBackgroundColor(data, "bbbbbb")], {type: "image/svg"})), "output.svg")});
+        width: xPixels,
+        height: yPixels,
+        mathBounds: { left: (-xMathSize/2), right: (xMathSize/2), top: (yMathSize/2), bottom:(-yMathSize/2) }
+    }, function (data) {download(URL.createObjectURL(new Blob([changeSvgColors(data, backgroundColor, '000000')], {type: "image/svg"})), "output.svg")});
 
-    calculator.updateSettings({
-        showXAxis : true,
-        showYAxis : true,
-        showGrid : true
-    });
+    updateViewSettings(true);
 
 }
 
@@ -54,40 +62,40 @@ function record() {
 
     calculator.setExpression({
         id: '2',
-        latex: 'a=' + frameNumber
+        latex: 'a=' + (initalValue + frameNumber*step)
     });
 
-    updateViewSettings(false)
+    updateViewSettings(false);
 
     calculator.asyncScreenshot({
         mode: 'stretch',
         format: 'svg',
-        width: 800,
-        height: 800,
-        mathBounds: { left: -5, right: 5, top: 5, bottom:-5 }
+        width: xPixels,
+        height: yPixels,
+        mathBounds: { left: (-xMathSize/2), right: (xMathSize/2), top: (yMathSize/2), bottom:(-yMathSize/2) }
     }, recordRepeat);
 
-    updateViewSettings(true)
+    updateViewSettings(true);
 
 }
 
 function recordRepeat(data) {
 
     //sessionStorage.setItem('Frame_'+ ('0000' + frameNumber).slice(-4), data);
-    var newData = changeBackgroundColor(data, 'bbbbbb')
+    var newData = changeSvgColors(data, backgroundColor, '000000')
     zip.file('frame_'+ ('00000' + frameNumber).slice(-5) + '.svg', newData);
 
-    //document.getElementById("image").innerHTML = data;
+    document.getElementById("image").innerHTML = newData;
     
     frameNumber ++;
 
-    if (frameNumber < 10) {
+    if (frameNumber < numFrames) {
 
         record()
 
     } else {
         frameNumber = 0
-        zip.file('Convert to mp4.sh', 'ffmpeg -r 10 -i frame_%05d.svg -c:v libx264 output.mp4');
+        zip.file('Convert to mp4.sh', 'ffmpeg -r '+ framerate +' -i frame_%05d.svg -c:v libx264 output.mp4');
     }
 
 }
@@ -95,16 +103,16 @@ function recordRepeat(data) {
 function updateViewSettings(boolean) {
 
     calculator.updateSettings({
-        showXAxis : boolean,
-        showYAxis : boolean,
-        showGrid : boolean
+        //showXAxis : boolean,
+        //showYAxis : boolean,
+        //showGrid : boolean
     });
 
 }
 
-function changeBackgroundColor(svgData, color) {
+function changeSvgColors(svgData, backgroundColor, gridColor) {
 
-    return svgData.replace('<rect fill="white', '<rect fill="#' + color)
+    return svgData.replace('<rect fill="white', '<rect fill="#' + backgroundColor).replace('<path fill="none" stroke="rgb(0,0,0)', '<path fill="none" stroke="#' + gridColor);
     // really bad code that doesn't check what it is changing 
     // and relies on the formatting provided by desmos
     //TODO: fix this bad code
