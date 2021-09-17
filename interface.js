@@ -15,6 +15,7 @@ btnElt4.addEventListener('click', startRecord);
 function startRecord() {
 
     backgroundColor = document.getElementById('bcolor').value;
+    gridColor = document.getElementById('gcolor').value;
     framerate = document.getElementById('framerate').value;
     xPixels = parseInt(document.getElementById('xPixels').value);
     yPixels = parseInt(document.getElementById('yPixels').value);

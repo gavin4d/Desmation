@@ -1,4 +1,5 @@
-var backgroundColor = 'bbbb00';
+var backgroundColor = 'ffffff';
+var gridColor = '000000'
 var framerate = 30;
 var xPixels = 800;
 var yPixels = 800;
@@ -20,27 +21,21 @@ function downloadZip() {
     })
 }
 
-const download = (path, filename) => {
-    // Create a new link
-    const anchor = document.createElement('a');
-    anchor.href = path;
-    anchor.download = filename;
-
-    // Append to the DOM
-    document.body.appendChild(anchor);
-
-    // Trigger `click` event
-    anchor.click();
-
-    // Remove element from DOM
-    document.body.removeChild(anchor);
+function download (path, filename) {
+    const link = document.createElement('a');
+    link.href = path;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }; 
 
 function captureScreenshot () {
 
     backgroundColor = document.getElementById('bcolor').value
-    xPixels = document.getElementById('xPixels').value
-    yPixels = document.getElementById('yPixels').value
+    gridColor = document.getElementById('gcolor').value;
+    xPixels = parseInt(document.getElementById('xPixels').value)
+    yPixels = parseInt(document.getElementById('yPixels').value)
     xMathSize = document.getElementById('xMathSize').value
     yMathSize = document.getElementById('yMathSize').value
     
@@ -52,7 +47,7 @@ function captureScreenshot () {
         width: xPixels,
         height: yPixels,
         mathBounds: { left: (-xMathSize/2), right: (xMathSize/2), top: (yMathSize/2), bottom:(-yMathSize/2) }
-    }, function (data) {download(URL.createObjectURL(new Blob([changeSvgColors(data, backgroundColor, '000000')], {type: "image/svg"})), "output.svg")});
+    }, function (data) {download(URL.createObjectURL(new Blob([changeSvgColors(data)], {type: "image/svg"})), "output.svg")});
 
     updateViewSettings(true);
 
@@ -82,8 +77,8 @@ function record() {
 function recordRepeat(data) {
 
     //sessionStorage.setItem('Frame_'+ ('0000' + frameNumber).slice(-4), data);
-    var newData = changeSvgColors(data, backgroundColor, '000000')
-    zip.file('frame_'+ ('00000' + frameNumber).slice(-5) + '.svg', newData);
+    var newData = changeSvgColors(data);
+    zip.file('output/frame_'+ ('00000' + frameNumber).slice(-5) + '.svg', newData);
 
     document.getElementById("image").innerHTML = newData;
     
@@ -95,7 +90,7 @@ function recordRepeat(data) {
 
     } else {
         frameNumber = 0
-        zip.file('Convert to mp4.sh', 'ffmpeg -r '+ framerate +' -i frame_%05d.svg -c:v libx264 output.mp4');
+        zip.file('output/Convert to mp4.sh', 'ffmpeg -r '+ framerate +' -i frame_%05d.svg -c:v libx264 output.mp4');
     }
 
 }
@@ -110,9 +105,12 @@ function updateViewSettings(boolean) {
 
 }
 
-function changeSvgColors(svgData, backgroundColor, gridColor) {
+function changeSvgColors(svgData) {
 
-    return svgData.replace('<rect fill="white', '<rect fill="#' + backgroundColor).replace('<path fill="none" stroke="rgb(0,0,0)', '<path fill="none" stroke="#' + gridColor);
+    return svgData.replace('<rect fill="white', '<rect fill="#' + backgroundColor)
+    .replace('fill="none" stroke="rgb(0,0,0)', 'fill="none" stroke="#' + gridColor)
+    .replace('<text fill="none" stroke="#ffffff', '<text fill="none" stroke="#' + backgroundColor)
+    .replace('<text fill="#000000" stroke="none"', '<text fill="#' + gridColor + '" stroke="none"');
     // really bad code that doesn't check what it is changing 
     // and relies on the formatting provided by desmos
     //TODO: fix this bad code
