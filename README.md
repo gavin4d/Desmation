@@ -1,2 +1,2 @@
-# Desmation
+# Desmotion
 Desmos animation exporter
