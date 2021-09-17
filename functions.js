@@ -5,7 +5,7 @@ var xPixels = 800;
 var yPixels = 800;
 var xMathSize = 10;
 var yMathSize = 10;
-var numFrames = 10;
+var numFrames = 100;
 var initalValue = 0;
 var step = 1;
 
