@@ -67,6 +67,14 @@ body {
     padding: 0px 16px;
 }
 
+#image{
+    width: 1200px;
+    height: 800px;
+    float: left;
+    margin: 20px 0;
+    padding: 0px 16px;
+}
+
 #screenshot{
 
 }
