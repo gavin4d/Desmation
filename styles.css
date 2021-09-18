@@ -37,6 +37,14 @@ body {
     display: block;
 }
 
+#record{
+    display: none;
+}
+
+.record_controls{
+    margin: 10px;
+}
+
 #attribution{
     margin: 10px 15px;
     float: left;
@@ -60,7 +68,7 @@ body {
 }
 
 #screenshot{
-    display:none;
+
 }
 
 #logo{

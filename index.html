@@ -22,19 +22,27 @@
             >
         </div>
         <div class="toolbar">
-             <input class="buttons" onclick="document.getElementById('settings_container').style.display = 'initial'" type="image" src="img/062-pencil.svg" alt="Edit" title="Edit" width="30" height="30">
-             <input class="buttons" onclick="document.getElementById('settings_container').style.display = 'none'" type="image" src="img/027-dot.svg" alt="Record" title="Record" width="30" height="30">
+             <input class="buttons" alt="Edit" title="Edit"
+                    onclick="
+                    document.getElementById('settings').style.display = 'initial';
+                    document.getElementById('record').style.display = 'initial'"
+                    type="image" src="img/062-pencil.svg" width="30" height="30">
+             <input class="buttons" alt="Record" title="Record"
+                    onclick="
+                    document.getElementById('settings').style.display = 'none';
+                    document.getElementById('record').style.display = 'inherit';"
+                    type="image" src="img/027-dot.svg" width="30" height="30">
         </div>
 
-        <div id="screenshot" style="margin: auto; width: 30%; padding: 16px">
-            <button id="screenshot-button">Capture Screenshot</button>
-            <button id="record-button">Record</button>
-            <button id="download-button">download</button>
-            <div id="image"></div>
+
         </div>
 
         <div class="l-page">
             <div id="calculator" style=""></div>
+            <div id="screenshot">
+
+            </div>
+            <div id="image"></div>
 
         </div>
 
@@ -62,6 +70,12 @@
                     <label for="step">Step size:</label><br>
                     <input type="text" value=1 id="step" name="step"><br>
                 </form>
+            </div>
+            <div id="record">
+                <button id="screenshot-button" class="record_controls">Capture Screenshot</button><br>
+                <button id="record-button" class="record_controls"
+                onclick="document.getElementById('calculator').style.display = 'none'">Record</button><br>
+                <button id="download-button" class="record_controls">Download</button><br>
             </div>
             <div id="attribution">
                 <p>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a>
