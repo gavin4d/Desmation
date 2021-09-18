@@ -44,6 +44,10 @@ body {
     width: 100%;
 }
 
+#logo{
+    margin: 20px;
+}
+
 h1{
     margin: 50px;
 }
