@@ -22,8 +22,8 @@
             >
         </div>
         <div class="toolbar">
-             <input class="buttons" type="image" src="img/062-pencil.svg" alt="Edit" title="Edit" width="30" height="30">
-             <input class="buttons" type="image" src="img/027-dot.svg" alt="Record" title="Record" width="30" height="30">
+             <input class="buttons" onclick="document.getElementById('settings_container').style.display = 'initial'" type="image" src="img/062-pencil.svg" alt="Edit" title="Edit" width="30" height="30">
+             <input class="buttons" onclick="document.getElementById('settings_container').style.display = 'none'" type="image" src="img/027-dot.svg" alt="Record" title="Record" width="30" height="30">
         </div>
 
         <div id="screenshot" style="margin: auto; width: 30%; padding: 16px">
@@ -38,7 +38,7 @@
 
         </div>
 
-        <div class="l-nav">
+        <div class="l-nav" id="settings_container">
             <div id="settings">
                 <form>
                     <label for="bcolor">Background color (hex):</label><br>
