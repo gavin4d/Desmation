@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #1D3557;
+}
+
+.l-site{
+
+}
+
+.top-bar{
+    position: absolute;
+    top: 0px;
+    background-color: #A8DADC;
+    width: 100%;
+    height: 100px;
+}
+
+.toolbar{
+    position: absolute;
+    left: 0px;
+    top: 100px;
+    width: 60px;
+    height: 100%;
+}
+
+.l-nav{
+    position: absolute;
+    left: 60px;
+    top: 100px;
+    height: 100%;
+    width: 60px;
+    background: #2C405D;
+}
+
+#settings{
+    display: none;
+}
+
+.l-page{
+    position: absolute;
+    top: 100px;
+    left: 140px;
+    width: 100%;
+}
+
+h1{
+    margin: 50px;
+}
+
+a{
+    float: right;
+    margin: 13px;
+}
