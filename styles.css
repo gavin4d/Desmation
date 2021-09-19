@@ -1,3 +1,21 @@
+@font-face {
+    font-family: 'atkinson_hyperlegibleregular';
+    src: url('font/atkinsonhyperlegible-regular-webfont.woff2') format('woff2'),
+         url('font/atkinsonhyperlegible-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'atkinson_hyperlegibleitalic';
+    src: url('font/atkinsonhyperlegible-italic-webfont.woff2') format('woff2'),
+         url('font/atkinsonhyperlegible-italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -36,6 +54,10 @@ body {
 
 #settings{
     display: block;
+}
+
+#color-settings{
+    display: none;
 }
 
 #record{
@@ -87,7 +109,7 @@ body {
 
 p{
     color: #F1FAEE;
-    font-family: sans
+    font-family: atkinson_hyperlegibleregular
 }
 
 a{
@@ -97,13 +119,14 @@ a{
 
 label{
     color: #F1FAEE;
-    font-family: sans;
+    font-family: atkinson_hyperlegibleregular;
 }
 
 
 .buttons{
     float: right;
     margin: 13px;
+    font-family: atkinson_hyperlegibleregular;
 }
 
 select{

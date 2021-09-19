@@ -21,10 +21,33 @@ function onDesmosChange() {
 
     //for (var i = 0; i < expressionArray.length; i++) console.log(expressionArray[i]);
 
+    var expressionColors = document.getElementById('expression-colors');
+    expressionColors.innerHTML = '';
+
     var dropDown = document.getElementById('animationVar');
     dropDown.innerHTML = '';
 
     for (var i = 0; i < expressionArray.length; i++) {
+
+        var colorItem1 = document.createElement('label');
+        colorItem1.setAttribute('for', 'color' + (i+1));
+        colorItem1.innerText = (i+1) + ': ';
+        expressionColors.appendChild(colorItem1);
+        var colorItem2 = document.createElement('input');
+        colorItem2.setAttribute('type', 'color');
+        colorItem2.setAttribute('id', 'color' + (i+1));
+        colorItem2.setAttribute('name', 'color' + (i+1));
+        colorItem2.setAttribute('value', expressionArray[i].color);
+        colorItem2.setAttribute('fnId', expressionArray[i].id);
+        expressionColors.appendChild(colorItem2);
+        var colorItem3 = document.createElement('br');
+        expressionColors.appendChild(colorItem3);
+
+        //if (colorItem != null) {
+        //    console.log(colorItem)
+        //    colorItem.setAttribute("value", expressionArray[i].color);
+        //}
+
         var isSlider = true;
         var string = expressionArray[i].latex;
         if (string != null) {
@@ -49,6 +72,25 @@ function onDesmosChange() {
         }
     }
 
+
+}
+
+function onColorChange() {
+    
+    calculator.observeEvent('change', function(){}); 
+    var expressionColors = document.getElementById('expression-colors').children;
+    for (var i = 0; i < expressionColors.length; i++) {
+        var item = expressionColors.item(i);
+        if (item.nodeName == 'INPUT') {
+            console.log(calculator.getExpressions());
+            calculator.setExpression({
+                id: item.getAttribute('fnId'),
+                color: item.value
+            });
+            console.log(item.getAttribute('value'));
+        };
+    }
+    calculator.observeEvent('change', onDesmosChange);
 
 }
 
