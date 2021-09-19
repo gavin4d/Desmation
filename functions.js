@@ -8,10 +8,48 @@ var yMathSize = 10;
 var numFrames = 100;
 var initalValue = 0;
 var step = 1;
+var fnId;
+var AnimateVarName;
 
 var zip = JSZip();
 
 var frameNumber = 0;
+
+function onDesmosChange() {
+
+    expressionArray = calculator.getExpressions();
+
+    //for (var i = 0; i < expressionArray.length; i++) console.log(expressionArray[i]);
+
+    var dropDown = document.getElementById('animationVar');
+    dropDown.innerHTML = '';
+
+    for (var i = 0; i < expressionArray.length; i++) {
+        var isSlider = true;
+        var string = expressionArray[i].latex;
+        string = string.replace(/\\ /g, "");
+        var testString = '';
+        if (string.includes('=')) {
+            testString = string.slice(string.indexOf('=') + 1);
+            string = string.slice(0, string.indexOf('='));
+        }
+        for (var j = 0; j < testString.length; j++) {
+            if (!"-1234567890.".includes(testString.charAt(i))) {
+                isSlider = false;
+            }
+        }
+        if (isSlider) {
+            var listElement = document.createElement('option');
+            listElement.setAttribute("string", string);
+            listElement.setAttribute("fnId", expressionArray[i].id);
+            listElement.innerText = string.replace(/\\/g, "");
+            dropDown.appendChild(listElement)
+        }
+    }
+
+
+}
+
 
 function downloadZip() {
     zip.generateAsync({type:"blob"}).then(function (blob) {
@@ -38,8 +76,6 @@ function captureScreenshot () {
     yPixels = parseInt(document.getElementById('yPixels').value)
     xMathSize = document.getElementById('xMathSize').value
     yMathSize = document.getElementById('yMathSize').value
-    
-    updateViewSettings(false);
 
     calculator.asyncScreenshot({
         mode: 'stretch',
@@ -49,18 +85,14 @@ function captureScreenshot () {
         mathBounds: { left: (-xMathSize/2), right: (xMathSize/2), top: (yMathSize/2), bottom:(-yMathSize/2) }
     }, function (data) {download(URL.createObjectURL(new Blob([changeSvgColors(data)], {type: "image/svg"})), "output.svg")});
 
-    updateViewSettings(true);
-
 }
 
 function record() {
 
     calculator.setExpression({
-        id: '2',
-        latex: 'a=' + (initalValue + frameNumber*step)
+        id: fnId,
+        latex: AnimateVarName + '=' + (initalValue + frameNumber*step)
     });
-
-    updateViewSettings(false);
 
     calculator.asyncScreenshot({
         mode: 'stretch',
@@ -69,8 +101,6 @@ function record() {
         height: yPixels,
         mathBounds: { left: (-xMathSize/2), right: (xMathSize/2), top: (yMathSize/2), bottom:(-yMathSize/2) }
     }, recordRepeat);
-
-    updateViewSettings(true);
 
 }
 
@@ -97,40 +127,46 @@ function recordRepeat(data) {
 
 }
 
-function updateViewSettings(boolean) {
-
-    calculator.updateSettings({
-        //showXAxis : boolean,
-        //showYAxis : boolean,
-        //showGrid : boolean
-    });
-
-}
-
 function changeSvgColors(svg) {
 
     var background = svg.getElementsByClassName('dcg-svg-background')[0];
-    background.setAttribute('fill', '#' + backgroundColor);
+    background.setAttribute('fill', backgroundColor);
     
     var classArray = svg.getElementsByClassName('dcg-svg-minor-gridline');
     for (i = 0; i < classArray.length; i++) {
-        classArray[i].setAttribute('stroke', '#' + gridColor);
+        classArray[i].setAttribute('stroke', gridColor);
     }
 
     classArray = svg.getElementsByClassName('dcg-svg-major-gridline');
     for (i = 0; i < classArray.length; i++) {
-        classArray[i].setAttribute('stroke', '#' + gridColor);
+        classArray[i].setAttribute('stroke', gridColor);
     }
 
     classArray = svg.getElementsByClassName('dcg-svg-axis-line');
     for (i = 0; i < classArray.length; i++) {
-        classArray[i].setAttribute('stroke', '#' + gridColor);
+        classArray[i].setAttribute('stroke', gridColor);
     }
 
     classArray = svg.getElementsByClassName('dcg-svg-axis-value');
     for (i = 0; i < classArray.length; i++) {
-        classArray[i].childNodes[0].setAttribute('stroke', '#' + backgroundColor);
-        classArray[i].childNodes[1].setAttribute('fill', '#' + gridColor);
+        classArray[i].childNodes[0].setAttribute('stroke', backgroundColor);
+        classArray[i].childNodes[1].setAttribute('fill', gridColor);
     }
     
 }
+
+
+
+
+/// Unused:
+
+
+/*function updateViewSettings(boolean) {
+
+    calculator.updateSettings({
+        showXAxis : boolean,
+        showYAxis : boolean,
+        showGrid : boolean
+    });
+
+}*/

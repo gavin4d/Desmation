@@ -25,6 +25,10 @@ function startRecord() {
     initalValue = parseFloat(document.getElementById('initalValue').value);
     step = parseFloat(document.getElementById('step').value);
 
+    var dropDown = document.getElementById('animationVar');
+    fnId = dropDown.options[dropDown.selectedIndex].getAttribute('fnId');
+    AnimateVarName = dropDown.options[dropDown.selectedIndex].getAttribute('string');
+
     record()
     
 }
@@ -33,3 +37,4 @@ var btnElt5 = document.getElementById('download-button');
 btnElt5.addEventListener('click', downloadZip);
 
 calculator.setExpression({ id: '1', latex: 'y=ax^2' });
+calculator.observeEvent('change', onDesmosChange);
