@@ -30,6 +30,7 @@ body {
     top: 100px;
     padding: 20px;
     height: 100%;
+    width: 212px;
     background: #2C405D;
 }
 
@@ -96,7 +97,7 @@ a{
 
 label{
     color: #F1FAEE;
-    font-family: sans
+    font-family: sans;
 }
 
 
@@ -104,6 +105,12 @@ label{
     float: right;
     margin: 13px;
 }
+
+select{
+    max-width: 210px;
+}
+
+
 
 input-text{
     padding: 5px 10px;
