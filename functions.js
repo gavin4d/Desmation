@@ -27,23 +27,25 @@ function onDesmosChange() {
     for (var i = 0; i < expressionArray.length; i++) {
         var isSlider = true;
         var string = expressionArray[i].latex;
-        string = string.replace(/\\ /g, "");
-        var testString = '';
-        if (string.includes('=')) {
-            testString = string.slice(string.indexOf('=') + 1);
-            string = string.slice(0, string.indexOf('='));
-        }
-        for (var j = 0; j < testString.length; j++) {
-            if (!"-1234567890.".includes(testString.charAt(i))) {
-                isSlider = false;
+        if (string != null) {
+            string = string.replace(/\\ /g, "");
+            var testString = '';
+            if (string.includes('=')) {
+                testString = string.slice(string.indexOf('=') + 1);
+                string = string.slice(0, string.indexOf('='));
             }
-        }
-        if (isSlider) {
-            var listElement = document.createElement('option');
-            listElement.setAttribute("string", string);
-            listElement.setAttribute("fnId", expressionArray[i].id);
-            listElement.innerText = string.replace(/\\/g, "");
-            dropDown.appendChild(listElement)
+            for (var j = 0; j < testString.length; j++) {
+                if (!"-1234567890.".includes(testString.charAt(i))) {
+                    isSlider = false;
+                }
+            }
+            if (isSlider) {
+                var listElement = document.createElement('option');
+                listElement.setAttribute("string", string);
+                listElement.setAttribute("fnId", expressionArray[i].id);
+                listElement.innerText = string.replace(/\\/g, "");
+                dropDown.appendChild(listElement)
+            }
         }
     }
 
@@ -148,6 +150,12 @@ function changeSvgColors(svg) {
     }
 
     classArray = svg.getElementsByClassName('dcg-svg-axis-value');
+    for (i = 0; i < classArray.length; i++) {
+        classArray[i].childNodes[0].setAttribute('stroke', backgroundColor);
+        classArray[i].childNodes[1].setAttribute('fill', gridColor);
+    }
+
+    classArray = svg.getElementsByClassName('dcg-svg-polar-axis-value');
     for (i = 0; i < classArray.length; i++) {
         classArray[i].childNodes[0].setAttribute('stroke', backgroundColor);
         classArray[i].childNodes[1].setAttribute('fill', gridColor);
