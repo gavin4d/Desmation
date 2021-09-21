@@ -46,7 +46,6 @@ body {
     position: absolute;
     left: 60px;
     top: 100px;
-    padding: 20px;
     height: 100%;
     width: 212px;
     background: #2C405D;
@@ -54,6 +53,7 @@ body {
 
 #settings{
     display: block;
+    padding: 20px 30px;
 }
 
 #color-settings{
@@ -130,14 +130,17 @@ label{
 }
 
 select{
-    max-width: 210px;
+    width: 147px;
+    border-radius: 4px;
+    margin: 5px 0px;
 }
 
 
-
-input-text{
-    padding: 5px 10px;
-    margin: 10px 15px;
-    border-radius: 4px;
+input[type=number]{
     width: 140px;
+}
+
+input{
+    border-radius: 4px;
+    margin: 5px 0px;
 }
