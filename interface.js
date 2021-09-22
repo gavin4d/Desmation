@@ -32,6 +32,8 @@ function startRecord() {
     var indicator = document.getElementById('record-indicator');
     indicator.textContent = 'Recording...';
 
+    zip.remove('output');
+
     record()
     
 }

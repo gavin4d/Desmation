@@ -103,7 +103,7 @@ function downloadZip() {
         download(URL.createObjectURL(blob), "output.zip")
         indicator.textContent = 'Downloaded';
     }, function (err) {
-        btnElt5.text(err);
+        indicator.textContent = err;
     })
 }
 
