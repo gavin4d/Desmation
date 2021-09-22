@@ -18,14 +18,13 @@
             <img
                 id="logo"
                 src="img/desmotionLogo.svg"
-                height="90"
             >
         </div>
         <div class="toolbar">
              <input class="buttons" alt="Edit" title="Edit"
                 onclick="
-                document.getElementById('settings').style.display = 'initial';
-                document.getElementById('calculator').style.display = 'initial';
+                document.getElementById('settings').style.display = 'inherit';
+                document.getElementById('calculator').style.display = 'intial';
                 document.getElementById('image').style.display = 'none';
                 document.getElementById('record').style.display = 'none';
                 document.getElementById('color-settings').style.display = 'none'"
@@ -50,10 +49,8 @@
         </div>
 
         <div class="l-page">
-            <div id="calculator" style=""></div>
-            <div id="screenshot">
-
-            </div>
+            <div id="calculator"></div>
+            <div id="screenshot"></div>
             <div id="image"></div>
 
         </div>
@@ -90,7 +87,7 @@
                     <label for="gcolor">Grid color:</label><br>
                     <input type="color" value=#000000 id="gcolor" name="gcolor"><br>
                     <p><br>Expression colors:</p>
-                    <span id='expression-colors'>
+                    <span id='expression-colors' class="color-numbers">
                         <label for="color1">1: </label>
                         <input type="color" value=#c74440 id="color1" fnId="1" name="color1">
                         <br>
@@ -99,7 +96,7 @@
             </div>
 
             <div id="record">
-                <button id="screenshot-button" class="record_controls">Capture Screenshot</button><br>
+                <button id="screenshot-button" class="record_controls">Preview</button><br>
                 <button id="record-button" class="record_controls"
                 onclick=
                         "document.getElementById('calculator').style.display = 'none';

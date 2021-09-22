@@ -31,45 +31,59 @@ body {
     top: 0px;
     background-color: #A8DADC;
     width: 100%;
-    height: 100px;
+    height: 7.5vh;
+}
+
+#logo{
+
+    height: 7.5vh;
+
 }
 
 .toolbar{
     position: absolute;
     left: 0px;
-    top: 100px;
+    top: 7.5vh;
     width: 60px;
-    height: 100%;
+    height: 92.5vh;
 }
 
 .l-nav{
     position: absolute;
     left: 60px;
-    top: 100px;
-    height: 100%;
-    width: 212px;
+    top: 7.5vh;
+    height: 92.5vh;
+    width: 200px;
     background: #2C405D;
+    overflow-y: auto;
 }
 
 #settings{
-    display: block;
-    padding: 20px 30px;
+    padding: 25px;
+    display: inherit;
 }
 
 #color-settings{
+    padding: 25px;
     display: none;
 }
 
 #record{
+    padding: 25px;
     display: none;
 }
 
 .record_controls{
-    margin: 10px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    border-width: 0px;
+    font-size: medium;
+    background-color: #F1FAEE;
+    height: 30px;
 }
 
 #attribution{
-    margin: 10px 15px;
+    padding: 25px;
     float: left;
     clear: both;
     font-size: small;
@@ -77,22 +91,17 @@ body {
 
 .l-page{
     position: absolute;
-    top: 100px;
-    left: 350px;
-    width: 1400px;
+    top: 7.5vh;
+    left: 260px;
+    right: 0;
 }
 
 #calculator{
-    width: 1200px;
-    height: 800px;
-    float: left;
-    margin: 20px 0;
-    padding: 0px 16px;
+    width:inherit;
+    height: 92.5vh;
 }
 
 #image{
-    width: 1200px;
-    height: 800px;
     float: left;
     margin: 20px 0;
     padding: 0px 16px;
@@ -103,8 +112,8 @@ body {
 
 }
 
-#logo{
-    margin: 20px;
+#expression-colors input[type=color]{
+    width: 100px;
 }
 
 p{
@@ -130,14 +139,27 @@ label{
 }
 
 select{
-    width: 147px;
+    width: 144px;
     border-radius: 4px;
     margin: 5px 0px;
+    border-width: 0px;
+    height: 25px;
+    background-color: #F1FAEE;
 }
 
 
 input[type=number]{
     width: 140px;
+    border-width: 0px;
+    height: 25px;
+    background-color: #F1FAEE;
+}
+
+input[type=color]{
+    width: 140px;
+    border-width: 0px;
+    height: 25px;
+    background-color: #F1FAEE;
 }
 
 input{
