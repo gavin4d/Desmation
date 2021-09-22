@@ -29,6 +29,9 @@ function startRecord() {
     fnId = dropDown.options[dropDown.selectedIndex].getAttribute('fnId');
     AnimateVarName = dropDown.options[dropDown.selectedIndex].getAttribute('string');
 
+    var indicator = document.getElementById('record-indicator');
+    indicator.textContent = 'Recording...';
+
     record()
     
 }

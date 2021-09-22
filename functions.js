@@ -96,8 +96,12 @@ function onColorChange() {
 
 
 function downloadZip() {
+
+    var indicator = document.getElementById('record-indicator');
+    indicator.textContent = 'Generating download...';
     zip.generateAsync({type:"blob"}).then(function (blob) {
         download(URL.createObjectURL(blob), "output.zip")
+        indicator.textContent = 'Downloaded';
     }, function (err) {
         btnElt5.text(err);
     })
@@ -123,6 +127,9 @@ function captureScreenshot () {
     xMathSize = document.getElementById('xMathSize').value
     yMathSize = document.getElementById('yMathSize').value
 
+    var indicator = document.getElementById('record-indicator');
+    indicator.textContent = 'Capturing image...';
+
     calculator.asyncScreenshot({
         mode: 'stretch',
         format: 'svg',
@@ -134,6 +141,7 @@ function captureScreenshot () {
         image.innerHTML = data;
         changeSvgColors(image);
         zip.file('output/frame_00000.svg', image.innerHTML);
+        indicator.textContent = 'Ready to download';
     });
 
 }
@@ -176,6 +184,8 @@ function recordRepeat(data) {
     } else {
         frameNumber = 0
         zip.file('output/Convert to mp4.sh', 'ffmpeg -r '+ framerate +' -i frame_%05d.svg -c:v libx264 output.mp4');
+        var indicator = document.getElementById('record-indicator');
+        indicator.textContent = 'Ready to download';
     }
 
 }

@@ -40,9 +40,7 @@ body {
 }
 
 #logo{
-
     height: 7.5vh;
-
 }
 
 .toolbar{
@@ -51,6 +49,10 @@ body {
     top: 7.5vh;
     width: 60px;
     height: 92.5vh;
+}
+
+#spacer{
+    height: 16px;
 }
 
 .l-nav{
@@ -119,8 +121,6 @@ body {
 
 #image{
     float: left;
-    margin: 20px 0;
-    padding: 0px 16px;
     display: none;
 }
 
@@ -150,7 +150,8 @@ label{
 
 .buttons{
     float: right;
-    margin: 13px;
+    padding: 15px;
+    margin-top: 5px;
     font-family: atkinson_hyperlegibleregular;
 }
 

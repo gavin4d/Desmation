@@ -27,6 +27,7 @@
             </div>
         </div>
         <div class="toolbar">
+            <div id="spacer"></div>
              <input class="buttons" alt="Edit" title="Edit"
                 onclick="
                 document.getElementById('settings').style.display = 'inherit';
@@ -39,6 +40,7 @@
                 onclick="
                 document.getElementById('color-settings').style.display = 'inherit'
                 document.getElementById('settings').style.display = 'none';
+                document.getElementById('calculator').style.display = 'inherit';
                 document.getElementById('image').style.display = 'none';
                 document.getElementById('record').style.display = 'none';"
                 type="image" src="img/paint-palette.svg" width="30" height="30">
@@ -46,6 +48,7 @@
                 onclick="
                 document.getElementById('settings').style.display = 'none';
                 document.getElementById('image').style.display = 'none';
+                document.getElementById('calculator').style.display = 'inherit';
                 document.getElementById('record').style.display = 'inherit';
                 document.getElementById('color-settings').style.display = 'none'"
                 type="image" src="img/digital-camera.svg" width="30" height="30">
@@ -105,6 +108,7 @@
                 <button id="screenshot-button" class="record_controls">Preview</button><br>
                 <button id="record-button" class="record_controls">Record</button><br>
                 <button id="download-button" class="record_controls">Download</button><br>
+                <p id="record-indicator"></p>
             </div>
         </div>
     </div>
