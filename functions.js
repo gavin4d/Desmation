@@ -113,6 +113,8 @@ function download (path, filename) {
 }; 
 
 function captureScreenshot () {
+    document.getElementById('calculator').style.display = 'none';
+    document.getElementById('image').style.display = 'inherit'
 
     backgroundColor = document.getElementById('bcolor').value
     gridColor = document.getElementById('gcolor').value;
@@ -127,9 +129,16 @@ function captureScreenshot () {
         width: xPixels,
         height: yPixels,
         mathBounds: { left: (-xMathSize/2), right: (xMathSize/2), top: (yMathSize/2), bottom:(-yMathSize/2) }
-    }, function (data) {download(URL.createObjectURL(new Blob([changeSvgColors(data)], {type: "image/svg"})), "output.svg")});
+    }, function (data) {
+        var image = document.getElementById('image')
+        image.innerHTML = data;
+        changeSvgColors(image);
+        zip.file('output/frame_00000.svg', image.innerHTML);
+    });
 
 }
+
+//download(URL.createObjectURL(new Blob([changeSvgColors(data)], {type: "image/svg"})), "output.svg")
 
 function record() {
 

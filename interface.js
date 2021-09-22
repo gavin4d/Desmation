@@ -11,6 +11,8 @@ var btnElt4 = document.getElementById('record-button');
 btnElt4.addEventListener('click', startRecord);
 
 function startRecord() {
+    document.getElementById('calculator').style.display = 'none';
+    document.getElementById('image').style.display = 'inherit'
 
     backgroundColor = document.getElementById('bcolor').value;
     gridColor = document.getElementById('gcolor').value;

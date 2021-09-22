@@ -3,8 +3,7 @@
     src: url('font/atkinsonhyperlegible-regular-webfont.woff2') format('woff2'),
          url('font/atkinsonhyperlegible-regular-webfont.woff') format('woff');
     font-weight: normal;
-    font-style: normal;
-
+    font-style: italic;
 }
 
 @font-face {
@@ -13,7 +12,13 @@
          url('font/atkinsonhyperlegible-italic-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
+}
+@font-face {
+    font-family: 'atkinson_hyperlegiblebold';
+    src: url('font/atkinsonhyperlegible-bold-webfont.woff2') format('woff2'),
+         url('font/atkinsonhyperlegible-bold-webfont.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
 }
 
 body {
@@ -83,10 +88,21 @@ body {
 }
 
 #attribution{
-    padding: 25px;
-    float: left;
+    padding-right: 25px;
+    padding-top: 1vh;
+    float: right;
     clear: both;
     font-size: small;
+}
+
+#attribution p{
+    color:#1D3557;
+    font-family: atkinson_hyperlegibleregular;
+}
+
+#attribution a{
+    color:#2C405D;
+    font-family: atkinson_hyperlegiblebold;
 }
 
 .l-page{
