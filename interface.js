@@ -39,7 +39,6 @@ btnElt5.addEventListener('click', downloadZip);
 var expressionColors = document.getElementById('expression-colors');
 expressionColors.addEventListener('change', onColorChange);
 
-calculator.setExpression({ id: '1', latex: 'y=ax^2' });
 calculator.observeEvent('change', onDesmosChange);
 
 var configForm = document.getElementById('config');

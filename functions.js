@@ -1,4 +1,4 @@
-var config = [30,1,100,0,1,1,800,800,10,10];
+var config = [30,1,30,0,1,0.034482758620689655,800,800,10,10];
 var configIds = ['framerate','duration','numFrames','initalValue','finalValue','step','xPixels','yPixels','xMathSize','yMathSize'];
 
 var backgroundColor = 'ffffff';
@@ -134,7 +134,7 @@ function captureScreenshot () {
         var image = document.getElementById('image')
         image.innerHTML = data;
         changeSvgColors(image);
-        zip.file('output/frame_00000.svg', image.innerHTML);
+        zip.file('output/preview.svg', image.innerHTML);
         indicator.textContent = 'Ready to download';
     });
 
