@@ -3,17 +3,9 @@ var configIds = ['framerate','duration','numFrames','initalValue','finalValue','
 
 var backgroundColor = 'ffffff';
 var gridColor = '000000'
-var framerate = 30;
-var xPixels = 800;
-var yPixels = 800;
-var xMathSize = 10;
-var yMathSize = 10;
-var numFrames = 100;
-var initalValue = 0;
-var step = 1;
-var finalValue = 1;
-var duration = 1;
-var lockDuration = true;
+var xPixels
+config[6]
+var xMathSize
 var fnId;
 var AnimateVarName;
 
@@ -128,10 +120,6 @@ function captureScreenshot () {
 
     backgroundColor = document.getElementById('bcolor').value
     gridColor = document.getElementById('gcolor').value;
-    xPixels = parseInt(document.getElementById('xPixels').value)
-    yPixels = parseInt(document.getElementById('yPixels').value)
-    xMathSize = document.getElementById('xMathSize').value
-    yMathSize = document.getElementById('yMathSize').value
 
     var indicator = document.getElementById('record-indicator');
     indicator.textContent = 'Capturing image...';
@@ -139,9 +127,9 @@ function captureScreenshot () {
     calculator.asyncScreenshot({
         mode: 'stretch',
         format: 'svg',
-        width: xPixels,
-        height: yPixels,
-        mathBounds: { left: (-xMathSize/2), right: (xMathSize/2), top: (yMathSize/2), bottom:(-yMathSize/2) }
+        width: config[6],
+        height: config[7],
+        mathBounds: { left: (-config[8]/2), right: (config[8]/2), top: (config[9]/2), bottom:(-config[9]/2) }
     }, function (data) {
         var image = document.getElementById('image')
         image.innerHTML = data;
@@ -158,15 +146,15 @@ function record() {
 
     calculator.setExpression({
         id: fnId,
-        latex: AnimateVarName + '=' + (initalValue + frameNumber*step)
+        latex: AnimateVarName + '=' + (config[3] + frameNumber*config[5])
     });
 
     calculator.asyncScreenshot({
         mode: 'stretch',
         format: 'svg',
-        width: xPixels,
-        height: yPixels,
-        mathBounds: { left: (-xMathSize/2), right: (xMathSize/2), top: (yMathSize/2), bottom:(-yMathSize/2) }
+        width: config[6],
+        height: config[7],
+        mathBounds: { left: (-config[8]/2), right: (config[8]/2), top: (config[9]/2), bottom:(-config[9]/2) }
     }, recordRepeat);
 
 }
@@ -183,13 +171,13 @@ function recordRepeat(data) {
     
     frameNumber ++;
 
-    if (frameNumber < numFrames) {
+    if (frameNumber < config[2]) {
 
         record()
 
     } else {
         frameNumber = 0
-        zip.file('output/Convert to mp4.sh', 'ffmpeg -r '+ framerate +' -i frame_%05d.svg -c:v libx264 output.mp4');
+        zip.file('output/Convert to mp4.sh', 'ffmpeg -r '+ config[0] +' -i frame_%05d.svg -c:v libx264 output.mp4');
         var indicator = document.getElementById('record-indicator');
         indicator.textContent = 'Ready to download';
     }

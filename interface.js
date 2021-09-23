@@ -91,11 +91,11 @@ function configChange() {
                 // change final value and step
                 if (changeNumber == 1) {
                     // change step size
-                    config[5] = (config[4]-config[3])/config[2];
+                    config[5] = (config[4]-config[3])/(config[2]-1);
                     document.getElementById(configIds[5]).value = config[5];
                 } else {
                     // change final value
-                    config[4] = config[3]+config[5]*config[2];
+                    config[4] = config[3]+config[5]*(config[2]-1);
                     document.getElementById(configIds[4]).value = config[4];
                 }
                 break;
@@ -114,11 +114,11 @@ function configChange() {
                 if (lastChange[0] == 0) changeNumber = lastChange[1];
                 if (changeNumber == 1) {
                     // change step size
-                    config[5] = (config[4]-config[3])/config[2];
+                    config[5] = (config[4]-config[3])/(config[2]-1);
                     document.getElementById(configIds[5]).value = config[5];
                 } else {
                     // change final value
-                    config[4] = config[3]+config[5]*config[2];
+                    config[4] = config[3]+config[5]*(config[2]-1);
                     document.getElementById(configIds[4]).value = config[4];
                 }
                 break;
@@ -131,11 +131,11 @@ function configChange() {
                 if (lastChange[0] == 1) changeNumber = lastChange[1];
                 if (changeNumber == 0) {
                     // change step size
-                    config[5] = (config[4]-config[3])/config[2];
+                    config[5] = (config[4]-config[3])/(config[2]-1);
                     document.getElementById(configIds[5]).value = config[5];
                 } else {
                     // change number of frames
-                    config[2] = Math.floor((config[4]-config[3])/config[5]);
+                    config[2] = Math.floor((config[4]-config[3])/config[5])+1;
                     document.getElementById(configIds[2]).textContent = config[2];
                     // change duration
                     config[1] = config[2]/config[0];
@@ -152,7 +152,7 @@ function configChange() {
                 if (lastChange[0] == 2) changeNumber = lastChange[1];
                 if (changeNumber == 0) {
                     // change final value
-                    config[4] = config[3]+config[5]*config[2];
+                    config[4] = config[3]+config[5]*(config[2]-1);
                     document.getElementById(configIds[4]).value = config[4];
                 } else {
                     // change number of frames
