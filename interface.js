@@ -1,3 +1,6 @@
+var lastChange = [0,1];
+var keepDuration = true;
+
 var elt = document.getElementById('calculator');
 var calculator = Desmos.GraphingCalculator(elt,{
     border : false,
@@ -16,14 +19,6 @@ function startRecord() {
 
     backgroundColor = document.getElementById('bcolor').value;
     gridColor = document.getElementById('gcolor').value;
-    framerate = document.getElementById('framerate').value;
-    xPixels = parseInt(document.getElementById('xPixels').value);
-    yPixels = parseInt(document.getElementById('yPixels').value);
-    xMathSize = document.getElementById('xMathSize').value;
-    yMathSize = document.getElementById('yMathSize').value;
-    numFrames = parseInt(document.getElementById('numFrames').value);
-    initalValue = parseFloat(document.getElementById('initalValue').value);
-    step = parseFloat(document.getElementById('step').value);
 
     var dropDown = document.getElementById('animationVar');
     fnId = dropDown.options[dropDown.selectedIndex].getAttribute('fnId');
@@ -46,3 +41,136 @@ expressionColors.addEventListener('change', onColorChange);
 
 calculator.setExpression({ id: '1', latex: 'y=ax^2' });
 calculator.observeEvent('change', onDesmosChange);
+
+var configForm = document.getElementById('config');
+configForm.addEventListener('change', configChange)
+
+function configChange() {
+
+    var change = null;
+    var oldConfig;
+
+    //lockDuration = document.getElementById('lockDuration').checked;
+
+    for (var i = 0; i < configIds.length; i++) {
+        oldConfig = config[i];
+        config[i] = parseFloat(document.getElementById(configIds[i]).value);
+
+        if (config[i] != oldConfig && !isNaN(config[i])) {
+            change = configIds[i];
+        }
+
+        //console.log(config[i]);
+
+    }    
+
+    if (change != null) {
+
+        switch (change) {
+
+            case 'framerate':
+                if (keepDuration) { // change number of frames
+                    config[2] = Math.floor(config[1]*config[0]);
+                    document.getElementById(configIds[2]).textContent = config[2];
+                } else { // change duration
+                    config[1] = config[2]/config[0];
+                    document.getElementById(configIds[1]).value = config[1];
+                }
+                break;
+            case 'duration':
+                keepDuration = true;
+                if (lastChange[0] != 0) {
+                    lastChange[1] = lastChange[0]
+                    lastChange[0] = 0
+                }
+                var changeNumber = lastChange[0];
+                if (lastChange[0] == 0) changeNumber = lastChange[1];
+                // change number of frames
+                config[2] = Math.floor(config[1]*config[0]);
+                document.getElementById(configIds[2]).textContent = config[2];
+                // change final value and step
+                if (changeNumber == 1) {
+                    // change step size
+                    config[5] = (config[4]-config[3])/config[2];
+                    document.getElementById(configIds[5]).value = config[5];
+                } else {
+                    // change final value
+                    config[4] = config[3]+config[5]*config[2];
+                    document.getElementById(configIds[4]).value = config[4];
+                }
+                break;
+            /*case 'numFrames':
+                keepDuration = false;
+                if (lastChange[0] != 0) {
+                    lastChange[1] = lastChange[0];
+                    lastChange[0] = 0;
+                }
+                // change duration
+                config[1] = config[2]/config[0];
+                document.getElementById(configIds[1]).value = config[1];
+                break;*/
+            case 'initalValue':
+                var changeNumber = lastChange[0];
+                if (lastChange[0] == 0) changeNumber = lastChange[1];
+                if (changeNumber == 1) {
+                    // change step size
+                    config[5] = (config[4]-config[3])/config[2];
+                    document.getElementById(configIds[5]).value = config[5];
+                } else {
+                    // change final value
+                    config[4] = config[3]+config[5]*config[2];
+                    document.getElementById(configIds[4]).value = config[4];
+                }
+                break;
+            case 'finalValue':
+                if (lastChange[0] != 1) {
+                    lastChange[1] = lastChange[0];
+                    lastChange[0] = 1;
+                }
+                var changeNumber = lastChange[0];
+                if (lastChange[0] == 1) changeNumber = lastChange[1];
+                if (changeNumber == 0) {
+                    // change step size
+                    config[5] = (config[4]-config[3])/config[2];
+                    document.getElementById(configIds[5]).value = config[5];
+                } else {
+                    // change number of frames
+                    config[2] = Math.floor((config[4]-config[3])/config[5]);
+                    document.getElementById(configIds[2]).textContent = config[2];
+                    // change duration
+                    config[1] = config[2]/config[0];
+                    document.getElementById(configIds[1]).value = config[1];
+                }
+
+                break;
+            case 'step':
+                if (lastChange[0] != 2) {
+                    lastChange[1] = lastChange[0];
+                    lastChange[0] = 2;
+                }
+                var changeNumber = lastChange[0];
+                if (lastChange[0] == 2) changeNumber = lastChange[1];
+                if (changeNumber == 0) {
+                    // change final value
+                    config[4] = config[3]+config[5]*config[2];
+                    document.getElementById(configIds[4]).value = config[4];
+                } else {
+                    // change number of frames
+                    config[2] = Math.floor((config[4]-config[3])/config[5]);
+                    document.getElementById(configIds[2]).textContent = config[2];
+                    // change duration
+                    config[1] = config[2]/config[0];
+                    document.getElementById(configIds[1]).value = config[1];
+                }
+                break;
+
+
+        }
+
+        //console.log(lastChange)
+
+    }
+
+
+    
+}

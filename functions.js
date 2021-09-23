@@ -1,3 +1,6 @@
+var config = [30,1,100,0,1,1,800,800,10,10];
+var configIds = ['framerate','duration','numFrames','initalValue','finalValue','step','xPixels','yPixels','xMathSize','yMathSize'];
+
 var backgroundColor = 'ffffff';
 var gridColor = '000000'
 var framerate = 30;
@@ -8,6 +11,9 @@ var yMathSize = 10;
 var numFrames = 100;
 var initalValue = 0;
 var step = 1;
+var finalValue = 1;
+var duration = 1;
+var lockDuration = true;
 var fnId;
 var AnimateVarName;
 
@@ -82,12 +88,12 @@ function onColorChange() {
     for (var i = 0; i < expressionColors.length; i++) {
         var item = expressionColors.item(i);
         if (item.nodeName == 'INPUT') {
-            console.log(calculator.getExpressions());
+            //console.log(calculator.getExpressions());
             calculator.setExpression({
                 id: item.getAttribute('fnId'),
                 color: item.value
             });
-            console.log(item.getAttribute('value'));
+            //console.log(item.getAttribute('value'));
         };
     }
     calculator.observeEvent('change', onDesmosChange);
