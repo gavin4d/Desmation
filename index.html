@@ -16,6 +16,7 @@
     <div class="l-site">
         <div class="top-bar">
             <img
+                alt="Desmotion"
                 id="logo"
                 src="img/desmotionLogo.svg"
             >
@@ -34,15 +35,17 @@
                 document.getElementById('calculator').style.display = 'inherit';
                 document.getElementById('image').style.display = 'none';
                 document.getElementById('record').style.display = 'none';
-                document.getElementById('color-settings').style.display = 'none'"
+                document.getElementById('color-settings').style.display = 'none'
+                document.getElementById('help').style.display = 'none';"
                 type="image" src="img/062-pencil.svg" width="30" height="30">
-             <input class="buttons" alt="Record" title="Record"
+             <input class="buttons" alt="Color Settings" title="Color Settings"
                 onclick="
                 document.getElementById('color-settings').style.display = 'inherit'
                 document.getElementById('settings').style.display = 'none';
                 document.getElementById('calculator').style.display = 'inherit';
                 document.getElementById('image').style.display = 'none';
-                document.getElementById('record').style.display = 'none';"
+                document.getElementById('record').style.display = 'none';
+                document.getElementById('help').style.display = 'none';"
                 type="image" src="img/paint-palette.svg" width="30" height="30">
              <input class="buttons" alt="Record" title="Record"
                 onclick="
@@ -50,8 +53,18 @@
                 document.getElementById('image').style.display = 'none';
                 document.getElementById('calculator').style.display = 'inherit';
                 document.getElementById('record').style.display = 'inherit';
-                document.getElementById('color-settings').style.display = 'none'"
+                document.getElementById('color-settings').style.display = 'none';
+                document.getElementById('help').style.display = 'none';"
                 type="image" src="img/digital-camera.svg" width="30" height="30">
+            <input class="buttons" alt="Help" title="Help"
+                onclick="
+                document.getElementById('settings').style.display = 'none';
+                document.getElementById('image').style.display = 'none';
+                document.getElementById('calculator').style.display = 'inherit';
+                document.getElementById('record').style.display = 'none';
+                document.getElementById('color-settings').style.display = 'none';
+                document.getElementById('help').style.display = 'inherit';"
+                type="image" src="img/073-question.svg" width="30" height="30">
         </div>
 
 
@@ -109,6 +122,10 @@
                 <button id="record-button" class="record_controls">Record</button><br>
                 <button id="download-button" class="record_controls">Download</button><br>
                 <p id="record-indicator"></p>
+            </div>
+
+            <div id="help">
+                <p>Instructions!</p>
             </div>
         </div>
     </div>
