@@ -54,6 +54,8 @@ function onDesmosChange() {
             if (string.includes('=')) {
                 testString = string.slice(string.indexOf('=') + 1);
                 string = string.slice(0, string.indexOf('='));
+            } else {
+                isSlider = false;
             }
             for (var j = 0; j < testString.length; j++) {
                 if (!"-1234567890.".includes(testString.charAt(i))) {
