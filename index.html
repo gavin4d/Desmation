@@ -90,6 +90,79 @@
             <div id="calculator"></div>
             <div id="screenshot"></div>
             <div id="image"></div>
+            <div id="instructions" class="text-format">
+                <h1>How to animate with Desmotion:</h1>
+                <h2>Create your animation</h2>
+                <ol>
+                    <li><h3>Enter a function</h3>
+                        <ul>
+                            <li>Add one or more functions to the expression list of the calculator.</li>
+                            <li>Tip: You can paste a Desmos link into the expressions list to import a saved graph.</li>
+                        </ul>
+                    </li>
+                    <li><h3>Add a slider variable</h3>
+                        <ul>
+                            <li>Enter at least one slider variable in the expressions list.</li>
+                            <li>If you have more than one slider variable, you can choose which one to animate on the pull-down menu in the Edit tab.</li>
+                        </ul>
+                    </li>
+                    <li><h3>Animation settings (optional)</h3>
+                        <ul>
+                            <li>Adjust any parameters you'd like to change on the Edit tab, such as frame rate and animation duration.</li>
+                        </ul>
+                    </li>
+                    <li><h3>Customize colors (optional)</h3>
+                        <ul>
+                            <li>Change any colors you'd like to in the Color Settings tab. </li>
+                            <li>Note: Some color changes, such as background color, will not be reflected in the calculator window, but can be previewed in the Record tab.</li>
+                        </ul>
+                    </li>
+                    <li><h3>Preview (optional)</h3>
+                        <ul>
+                            <li>Preview a screenshot in the Record tab.  This will display the current state of your graph with your animation settings, such as background color.</li>
+                        </ul>
+                    </li>
+                    <li><h3>Record</h3>
+                        <ul>
+                            <li>Click the Record button to create your animation frames.</li>
+                        </ul>
+                    </li>
+                </ol>
+                <br>
+                 <h2>Render your animation</h2>
+                <ol>
+                    <li><h3>Download your frames</h3>
+                        <ul>
+                            <li>Press the 'Download' button to download the zip file of all the frames needed to make your animation.</li>
+                        </ul>
+                    </li>
+                    <li><h3>Install ffmpeg (Linux)</h3>
+                        <ul>
+                            <li>We designed this tool to work with the animation program ffmpeg on Linux (Windows and iOS instructions coming soon!)</li>
+                            <li>In the Linux terminal, enter the following command: sudo apt install ffmpeg</li>
+                        </ul>
+                    </li>
+                    <li><h3>Extract files </h3>
+                        <ul>
+                            <li>Find the output.zip file in your Downloads folder, right click, and choose 'Extract Here'.</li>
+                        </ul>
+                    </li>
+                    <li><h3>Run the animation script</h3>
+                        <ul>
+                            <li>Look inside the unzipped 'output' folder.  It contains image files which are your animation frames and a script file called 'Convert to mp4.sh'. </li>
+                            <li>Right click on the 'Convert to mp4.sh' file and choose Properties, then select the Permissions tab.</li>
+                            <li>Check the box titled 'Allow executing file as program'.</li>
+                            <li>Check the box titled 'Allow executing file as program'.</li>
+                            <li>Run the script with the following command: ./Convert\ to\ mp4.sh</li>
+                        </ul>
+                    </li>
+                    <li><h3>You're done!</h3>
+                        <ul>
+                            <li>You can find your mp4 file in the same unzipped directory where the frames were saved.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
 
         </div>
 
@@ -147,7 +220,9 @@
             </div>
 
             <div id="help">
-                <p>Welcome to Desmotion, an animation tool for the <a href="https://www.desmos.com/calculator">Desmos graphing calculator</a></p>
+                <p>Welcome to Desmotion!<br>
+                    <br>
+                    An animation tool for the <a href="https://www.desmos.com/calculator">Desmos graphing calculator</a></p>
             </div>
         </div>
     </div>

@@ -83,6 +83,7 @@ body {
 #help{
     padding: 25px;
     display: none;
+    text-align: center;
 }
 
 .record_controls{
@@ -199,3 +200,23 @@ output{
     font-weight: bold;
     font-size: large;
 }
+
+#instructions{
+    padding: 10px 20px;
+
+}
+
+.text-format {
+    color: #F1FAEE;
+    font-family: atkinson_hyperlegibleregular;
+    font-size: large;
+}
+
+li{
+    margin: 10px 0;
+}
+
+h2{
+    color: powderblue;
+}
+
