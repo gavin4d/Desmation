@@ -28,7 +28,7 @@ body {
 }
 
 .l-site{
-
+    height: 100%;
 }
 
 .top-bar{
@@ -48,7 +48,7 @@ body {
     left: 0px;
     top: 7.5vh;
     width: 60px;
-    height: 92.5vh;
+    height: 100%;
 }
 
 #spacer{
@@ -59,10 +59,13 @@ body {
     position: absolute;
     left: 60px;
     top: 7.5vh;
-    height: 92.5vh;
     width: 200px;
     background: #2C405D;
     overflow-y: auto;
+}
+
+#settings_container{
+    height: 100vh;
 }
 
 #settings{
@@ -218,5 +221,9 @@ li{
 
 h2{
     color: powderblue;
+}
+
+#instructions{
+    display:  none;
 }
 
