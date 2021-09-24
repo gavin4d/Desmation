@@ -80,6 +80,11 @@ body {
     display: none;
 }
 
+#help{
+    padding: 25px;
+    display: none;
+}
+
 .record_controls{
     margin-bottom: 16px;
     border-radius: 6px;
