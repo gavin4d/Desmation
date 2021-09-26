@@ -18,14 +18,8 @@
             <img
                 alt="Desmotion"
                 id="logo"
-                src="img/desmotionLogo.svg"
+                src="img/desmotionLogoBeta.svg"
             >
-            <div id="attribution">
-                <p>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a>
-                    <br>
-                    from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-                </p>
-            </div>
         </div>
         <div class="toolbar">
             <div id="spacer"></div>
@@ -42,7 +36,7 @@
                 document.getElementById('color-settings').style.display = 'none'
                 document.getElementById('help').style.display = 'none';
                 document.getElementById('instructions').style.display = 'none';
-                document.getElementById('settings_container').style.height = '100vh';"
+                document.getElementById('settings_container').style.height = '92.5vh';"
                 type="image" src="img/062-pencil.svg" width="30" height="30">
              <input id="color-button" class="buttons" alt="Edit Color" title="Edit Colors"
                 onclick="
@@ -57,7 +51,7 @@
                 document.getElementById('record').style.display = 'none';
                 document.getElementById('help').style.display = 'none';
                 document.getElementById('instructions').style.display = 'none';
-                document.getElementById('settings_container').style.height = '100vh';"
+                document.getElementById('settings_container').style.height = '92.5vh';"
                 type="image" src="img/paint-palette.svg" width="30" height="30">
              <input id="start-record-button" class="buttons" alt="Record" title="Record"
                 onclick="
@@ -72,7 +66,7 @@
                 document.getElementById('color-settings').style.display = 'none';
                 document.getElementById('help').style.display = 'none';
                 document.getElementById('instructions').style.display = 'none';
-                document.getElementById('settings_container').style.height = '100vh';"
+                document.getElementById('settings_container').style.height = '92.5vh';"
                 type="image" src="img/digital-camera.svg" width="30" height="30">
             <input id="help-button" class="buttons" alt="Help" title="Help"
                 onclick="
@@ -87,7 +81,7 @@
                 document.getElementById('color-settings').style.display = 'none';
                 document.getElementById('help').style.display = 'inherit';
                 document.getElementById('instructions').style.display = 'inherit';
-                document.getElementById('settings_container').style.height = '1540px';"
+                //document.getElementById('settings_container').style.height = '1540px';"
                 type="image" src="img/073-question.svg" width="30" height="30">
         </div>
 
@@ -160,7 +154,7 @@
                             <li>Look inside the unzipped 'output' folder.  It contains image files which are your animation frames and a script file called 'Convert to mp4.sh'. </li>
                             <li>Right click on the 'Convert to mp4.sh' file and choose Properties, then select the Permissions tab.</li>
                             <li>Check the box titled 'Allow executing file as program'.</li>
-                            <li>Check the box titled 'Allow executing file as program'.</li>
+                            <li>Right click on your unzipped 'output' folder and choose 'Open in Terminal'.</li>
                             <li>Run the script with the following command: ./Convert\ to\ mp4.sh</li>
                         </ul>
                     </li>
@@ -228,11 +222,20 @@
             </div>
 
             <div id="help">
-                <p>Welcome to Desmotion!<br>
+                <p class="help-sidebar">Welcome to Desmotion!<br>
                     <br>
                     An animation tool for the <a href="https://www.desmos.com/calculator">Desmos graphing calculator</a>
                 </p>
-                <p>Hosted by <a href="www.monkeyflowermath.com">Monkeyflower Math</a></p>
+                <p class="help-sidebar">
+                    Hosted by <a href="www.monkeyflowermath.com">Monkeyflower Math</a>
+                </p>
+                <p class="help-sidebar">Icons made by <br><a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a>
+                    <br>
+                    from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+                </p>
+                <p class="help-sidebar">
+                    For some super cool Desmos hacks and hidden features, check out the unofficial Desmos blog <a href="https://desmosgraphunofficial.wordpress.com/">DesmosGraph</a>
+                </p>
             </div>
         </div>
     </div>
