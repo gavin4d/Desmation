@@ -232,3 +232,10 @@ h2{
 .help-sidebar{
     padding: 15px 0px;
 }
+
+figcaption{
+    font-style: italic;
+    font-size: small;
+    width: 450px;
+    text-align: center;
+}

@@ -93,7 +93,7 @@
             <div id="image"></div>
             <div id="instructions" class="text-format">
                 <h1>How to animate with Desmotion:</h1>
-                Welcome to Desmotion!  Using this tool, you can easily turn your functions into customized animations.  <br>
+                Using this tool, you can easily turn your functions into customized animations.  <br>
                 <br>
                 The following steps will walk you through the process of creating and rendering your animation to an .mp4 file.<br>
                 <br>
@@ -112,53 +112,62 @@
                     <li><h3>Add a slider variable</h3>
                         <ul>
                             <li>Enter at least one slider variable in the expressions list.<br><br></li>
-                            <img
+                            <figure>
+                                <img
                                     alt="Add a slider variable"
-                                    title="Add a slider variabe"
+                                    title="Add a slider variable"
                                     src="img/add_slider.png"
-                                    width ="450px"
+                                    width="450px"
                                 >
+                                <figcaption>Add a slider variable</figcaption>
+                            </figure>
                             <br>
                             <br>
-                            <li>If you have more than one slider variable, you can choose which one to animate on the pull-down menu in the Edit tab.<br><br></li>
-                            <img
+                            <li>Select a slider variable to animate on the pull-down menu in the Edit tab.<br><br></li>
+                            <figure>
+                                <img
                                     alt="Selecting a slider variable"
                                     title="Selecting a slider variable"
                                     src="img/slider_pulldown.png"
                                     width ="450px"
                                 >
+                                <figcaption>Select a slider variable</figcaption>
+                            </figure>
                             <br>
                             <br>
                             <li> Set the initial value and final value for the slider</li>
                             <u><b>Warning:</b></u> These are not determined by the slider in the calculator!<br><br>
-                            <img
+
+                            <figure>
+                                <img
                                     alt="Check initial value"
                                     title="Check initial value"
                                     src="img/initial_value.png"
                                     width ="450px"
                                 >
-                            <br>
+                                <figcaption>Set initial value and final value</figcaption>
+                            </figure>
                             <br>
                             You should set these to the value you want the animated variable to start and end with.
                         </ul>
-                    </li>
+                    </li><br>
                     <li><h3>Animation settings (optional)</h3>
                         <ul>
                             <li>Adjust any parameters you'd like to change on the Edit tab, such as frame rate and animation duration.</li>
                         </ul>
-                    </li>
+                    </li><br>
                     <li><h3>Customize colors (optional)</h3>
                         <ul>
                             <li>Change any colors you'd like to in the Color Settings tab. </li>
-                            <li>Note: Some color changes, such as background color, will not be reflected in the calculator window. These can be previewed in the Record tab.</li>
+                            <li>Note: Some color changes, such as background color, will not be reflected in the calculator window. These can be previewed in the   Record tab.</li>
                         </ul>
-                    </li>
+                    </li><br>
                     <li><h3>Preview (optional)</h3>
                         <ul>
                             <li>Preview a screenshot in the Record tab.  This will display a single frame of your graph with the color settings you have chosen.</li>
                             <li><b><u>Tip:</u> </b>Don't download yet unless you just want to capture a screenshot!</li>
                         </ul>
-                    </li>
+                    </li><br>
                     <li><h3>Record</h3>
                         <ul>
                             <li>In the Record tab, click the Record button to create your animation frames. You will see a preview of the full animation.</li>
@@ -172,45 +181,57 @@
                         <ul>
                             <li>Press the 'Download' button to download the zip file of all the frames needed to make your animation.</li>
                         </ul>
-                    </li>
+                    </li><br>
                     <li><h3>Install ffmpeg (Linux)</h3>
                         <ul>
                             <li>We designed this tool to work with the animation program ffmpeg on Linux (Windows and iOS instructions coming soon!)</li>
                             <li>In the Linux terminal, enter the following command: sudo apt install ffmpeg.  Type your password to start the installation.</li>
                         </ul>
-                    </li>
+                    </li><br>
                     <li><h3>Extract files </h3>
                         <ul>
                             <li>Find the output.zip file in your Downloads folder, right click, and choose 'Extract Here'.</li>
                         </ul>
-                    </li>
+                    </li><br>
                     <li><h3>Run the animation script</h3>
                         <ul>
                             <li>Look inside the unzipped 'output' folder.  It contains image files which are your animation frames and a script file called 'Convert to mp4.sh'.<br><br></li>
-                            <img
+
+                            <figure>
+                                <img
                                     alt="Script file"
                                     title="Script file"
                                     src="img/script_file.png"
                                     width ="450px"
-                                ><br><br>
+                                >
+                                <figcaption>Locate the script file</figcaption>
+                            </figure><br><br>
                             <li>Right click on the 'Convert to mp4.sh' file and choose Properties, then select the Permissions tab.<br><br></li>
-                            <img
+
+                            <figure>
+                                <img
                                     alt="Properties window"
                                     title="Properties window"
                                     src="img/properties_window.png"
                                     width ="450px"
-                                ><br><br>
+                                >
+                                <figcaption>Choose Properties, then Permissions</figcaption>
+                            </figure><br><br>
                             <li>Check the box titled 'Allow executing file as program'.<br><br></li>
-                            <img
+
+                            <figure>
+                                <img
                                     alt="Allow executing file check box"
                                     title="Allow executing file check box"
                                     src="img/allow_execution.png"
                                     width ="450px"
-                                ><br><br>
+                                >
+                                <figcaption>Allow executing file as program</figcaption>
+                            </figure><br><br>
                             <li>Right click on your unzipped 'output' folder and choose 'Open in Terminal'.</li>
                             <li>Run the script with the following command: ./Convert\ to\ mp4.sh</li>
                         </ul>
-                    </li>
+                    </li><br>
                     <li><h3>You're done!</h3>
                         <ul>
                             <li>You can find your .mp4 file in the same 'output' folder where the frames were saved.</li>
@@ -285,6 +306,9 @@
                 <p class="help-sidebar">Icons made by <br><a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a>
                     <br>
                     from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+                </p>
+                <p class="help-sidebar">
+                    All screenshots in the tutorial were created and edited by Heather Moore
                 </p>
                 <p class="help-sidebar">
                     For some super cool Desmos hacks and hidden features, check out the unofficial Desmos blog <a href="https://desmosgraphunofficial.wordpress.com/">DesmosGraph</a>
