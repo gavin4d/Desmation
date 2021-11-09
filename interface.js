@@ -38,6 +38,8 @@ btnElt5.addEventListener('click', downloadZip);
 
 var expressionColors = document.getElementById('expression-colors');
 expressionColors.addEventListener('change', onColorChange);
+//document.getElementById('bcolor').addEventListener('change', onColorChange);
+//document.getElementById('gcolor').addEventListener('change', onColorChange);
 
 calculator.observeEvent('change', onDesmosChange);
 

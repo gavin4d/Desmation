@@ -75,6 +75,13 @@ function onDesmosChange() {
 
 }
 
+function onGridColorChange() {
+    backgroundColor = document.getElementById('bcolor').value;
+    gridColor = document.getElementById('gcolor').value;
+    var graphPaper = document.getElementsByClassName('dcg-container')[0];
+    graphPaper.setAttribute('style', 'font-size:16px;background: ' + backgroundColor + ';color: #000000;')
+}
+
 function onColorChange() {
     
     calculator.observeEvent('change', function(){}); 
@@ -120,8 +127,7 @@ function captureScreenshot () {
     document.getElementById('calculator').style.display = 'none';
     document.getElementById('image').style.display = 'inherit'
 
-    backgroundColor = document.getElementById('bcolor').value
-    gridColor = document.getElementById('gcolor').value;
+    onGridColorChange();
 
     var indicator = document.getElementById('record-indicator');
     indicator.textContent = 'Capturing image...';
@@ -202,6 +208,11 @@ function changeSvgColors(svg) {
     }
 
     classArray = svg.getElementsByClassName('dcg-svg-axis-line');
+    for (i = 0; i < classArray.length; i++) {
+        classArray[i].setAttribute('stroke', gridColor);
+    }
+
+    classArray = svg.getElementsByClassName('dcg-svg-tickmark');
     for (i = 0; i < classArray.length; i++) {
         classArray[i].setAttribute('stroke', gridColor);
     }
