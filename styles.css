@@ -141,6 +141,12 @@ body {
 
 #expression-colors input[type=color]{
     width: 100px;
+    position: absolute;
+    left: 60px;
+}
+
+#expression-colors label{
+    line-height: 2.3;
 }
 
 p{

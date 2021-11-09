@@ -76,10 +76,14 @@ function onDesmosChange() {
 }
 
 function onGridColorChange() {
+    var graphPaper = document.getElementsByClassName('dcg-container')[0];
     backgroundColor = document.getElementById('bcolor').value;
     gridColor = document.getElementById('gcolor').value;
-    var graphPaper = document.getElementsByClassName('dcg-container')[0];
-    graphPaper.setAttribute('style', 'font-size:16px;background: ' + backgroundColor + ';color: #000000;')
+    if(document.getElementById('bcolorupdate').checked) {
+        graphPaper.setAttribute('style', 'font-size:16px;background: ' + backgroundColor + ';color: #000000;')
+    } else {
+        graphPaper.setAttribute('style', 'font-size:16px;background: #ffffff;color: #000000;')
+    }
 }
 
 function onColorChange() {
