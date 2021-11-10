@@ -9,6 +9,8 @@ var xMathSize
 var fnId;
 var AnimateVarName;
 
+var selectedTab = "none";
+
 var zip = JSZip();
 
 var frameNumber = 0;
@@ -75,6 +77,17 @@ function onDesmosChange() {
 
 }
 
+function onGridColorChange() {
+    var graphPaper = document.getElementsByClassName('dcg-container')[0];
+    backgroundColor = document.getElementById('bcolor').value;
+    gridColor = document.getElementById('gcolor').value;
+    if(document.getElementById('bcolorupdate').checked) {
+        graphPaper.setAttribute('style', 'font-size:16px;background: ' + backgroundColor + ';color: #000000;')
+    } else {
+        graphPaper.setAttribute('style', 'font-size:16px;background: #ffffff;color: #000000;')
+    }
+}
+
 function onColorChange() {
     
     calculator.observeEvent('change', function(){}); 
@@ -93,6 +106,8 @@ function onColorChange() {
     calculator.observeEvent('change', onDesmosChange);
 
 }
+
+
 
 
 function downloadZip() {
@@ -120,8 +135,7 @@ function captureScreenshot () {
     document.getElementById('calculator').style.display = 'none';
     document.getElementById('image').style.display = 'inherit'
 
-    backgroundColor = document.getElementById('bcolor').value
-    gridColor = document.getElementById('gcolor').value;
+    onGridColorChange();
 
     var indicator = document.getElementById('record-indicator');
     indicator.textContent = 'Capturing image...';
@@ -206,6 +220,11 @@ function changeSvgColors(svg) {
         classArray[i].setAttribute('stroke', gridColor);
     }
 
+    classArray = svg.getElementsByClassName('dcg-svg-tickmark');
+    for (i = 0; i < classArray.length; i++) {
+        classArray[i].setAttribute('stroke', gridColor);
+    }
+
     classArray = svg.getElementsByClassName('dcg-svg-axis-value');
     for (i = 0; i < classArray.length; i++) {
         classArray[i].childNodes[0].setAttribute('stroke', backgroundColor);
@@ -220,7 +239,93 @@ function changeSvgColors(svg) {
     
 }
 
+function onMouseOver(sender) {
+    
+    if (sender.id != selectedTab) {
+            sender.style.backgroundColor = '#182c48'
+    }
 
+}
+
+function onMouseOut(sender) {
+    
+    if (sender.id != selectedTab) {
+            sender.style.backgroundColor = '#1D3557'
+    }
+
+}
+
+function onButtonPress(id) {
+
+    var edit_button = document.getElementById('edit-button');
+    var help_button = document.getElementById('help-button');
+    var color_button = document.getElementById('color-button');
+    var start_record_button = document.getElementById('start-record-button');
+
+    var settings = document.getElementById('settings');
+    var calculator = document.getElementById('calculator');
+    var record = document.getElementById('record');
+    var color_settings = document.getElementById('color-settings');
+    var help = document.getElementById('help');
+    var instructions = document.getElementById('instructions');
+
+    edit_button.style.backgroundColor = '#1D3557';
+    help_button.style.backgroundColor = '#1D3557';
+    color_button.style.backgroundColor = '#1D3557';
+    start_record_button.style.backgroundColor = '#1D3557';
+
+    document.getElementById('image').style.display = 'none';
+
+    if (selectedTab == id) {
+        settings.style.display = 'none';
+        calculator.style.display = 'inherit';
+        record.style.display = 'none';
+        color_settings.style.display = 'none';
+        help.style.display = 'none';
+        instructions.style.display = 'none';
+        document.getElementsByClassName('l-nav')[0].style.width = '0px';
+        document.getElementsByClassName('l-page')[0].style.left = '60px';
+        selectedTab = "none"
+    } else {
+
+        selectedTab = id;
+
+        document.getElementsByClassName('l-nav')[0].style.width = '200px';
+        document.getElementsByClassName('l-page')[0].style.left = '260px';
+        
+        document.getElementById(id).style.backgroundColor = '#2C405D';
+
+        if (id == "edit-button") {
+            settings.style.display = 'inherit';
+            calculator.style.display = 'inherit';
+            record.style.display = 'none';
+            color_settings.style.display = 'none'
+            help.style.display = 'none';
+            instructions.style.display = 'none';
+        } else if (id == "color-button") {
+            settings.style.display = 'none'
+            calculator.style.display = 'inherit';
+            record.style.display = 'none';
+            color_settings.style.display = 'inherit';
+            help.style.display = 'none';
+            instructions.style.display = 'none';
+        } else if (id == "start-record-button") {
+            settings.style.display = 'none';
+            calculator.style.display = 'inherit';
+            record.style.display = 'inherit';
+            color_settings.style.display = 'none';
+            help.style.display = 'none';
+            instructions.style.display = 'none';
+        } else if (id == "help-button") {
+            settings.style.display = 'none';
+            calculator.style.display = 'none';
+            record.style.display = 'none';
+            color_settings.style.display = 'none';
+            help.style.display = 'inherit';
+            instructions.style.display = 'inherit';
+        }
+    }
+}
 
 
 /// Unused:

@@ -24,63 +24,16 @@
         <div class="toolbar">
             <div id="spacer"></div>
              <input id="edit-button" class="buttons" alt="Edit" title="Edit"
-                onclick="
-                document.getElementById('help-button').style.backgroundColor = '#1D3557';
-                document.getElementById('edit-button').style.backgroundColor = '#2C405D';
-                document.getElementById('color-button').style.backgroundColor = '#1D3557';
-                document.getElementById('start-record-button').style.backgroundColor = '#1D3557';
-                document.getElementById('settings').style.display = 'inherit';
-                document.getElementById('calculator').style.display = 'inherit';
-                document.getElementById('image').style.display = 'none';
-                document.getElementById('record').style.display = 'none';
-                document.getElementById('color-settings').style.display = 'none'
-                document.getElementById('help').style.display = 'none';
-                document.getElementById('instructions').style.display = 'none';
-                document.getElementById('settings_container').style.height = '92.5vh';"
+                onclick="onButtonPress('edit-button')" onmouseover="onMouseOver(this)" onmouseout="onMouseOut(this)"
                 type="image" src="img/062-pencil.svg" width="30" height="30">
              <input id="color-button" class="buttons" alt="Color Settings" title="Color Settings"
-                onclick="
-                document.getElementById('help-button').style.backgroundColor = '#1D3557';
-                document.getElementById('color-button').style.backgroundColor = '#2C405D';
-                document.getElementById('start-record-button').style.backgroundColor = '#1D3557';
-                document.getElementById('edit-button').style.backgroundColor = '#1D3557';
-                document.getElementById('color-settings').style.display = 'inherit'
-                document.getElementById('settings').style.display = 'none';
-                document.getElementById('calculator').style.display = 'inherit';
-                document.getElementById('image').style.display = 'none';
-                document.getElementById('record').style.display = 'none';
-                document.getElementById('help').style.display = 'none';
-                document.getElementById('instructions').style.display = 'none';
-                document.getElementById('settings_container').style.height = '92.5vh';"
+                onclick="onButtonPress('color-button')" onmouseover="onMouseOver(this)" onmouseout="onMouseOut(this)"
                 type="image" src="img/paint-palette.svg" width="30" height="30">
              <input id="start-record-button" class="buttons" alt="Record" title="Record"
-                onclick="
-                document.getElementById('help-button').style.backgroundColor = '#1D3557';
-                document.getElementById('start-record-button').style.backgroundColor = '#2C405D';
-                document.getElementById('color-button').style.backgroundColor = '#1D3557';
-                document.getElementById('edit-button').style.backgroundColor = '#1D3557';
-                document.getElementById('settings').style.display = 'none';
-                document.getElementById('image').style.display = 'none';
-                document.getElementById('calculator').style.display = 'inherit';
-                document.getElementById('record').style.display = 'inherit';
-                document.getElementById('color-settings').style.display = 'none';
-                document.getElementById('help').style.display = 'none';
-                document.getElementById('instructions').style.display = 'none';
-                document.getElementById('settings_container').style.height = '92.5vh';"
+                onclick="onButtonPress('start-record-button')" onmouseover="onMouseOver(this)" onmouseout="onMouseOut(this)"
                 type="image" src="img/digital-camera.svg" width="30" height="30">
             <input id="help-button" class="buttons" alt="Help" title="Help"
-                onclick="
-                document.getElementById('help-button').style.backgroundColor = '#2C405D';
-                document.getElementById('start-record-button').style.backgroundColor = '#1D3557';
-                document.getElementById('color-button').style.backgroundColor = '#1D3557';
-                document.getElementById('edit-button').style.backgroundColor = '#1D3557';
-                document.getElementById('settings').style.display = 'none';
-                document.getElementById('image').style.display = 'none';
-                document.getElementById('calculator').style.display = 'none';
-                document.getElementById('record').style.display = 'none';
-                document.getElementById('color-settings').style.display = 'none';
-                document.getElementById('help').style.display = 'inherit';
-                document.getElementById('instructions').style.display = 'inherit';"
+                onclick="onButtonPress('help-button')" onmouseover="onMouseOver(this)" onmouseout="onMouseOut(this)"
                 type="image" src="img/073-question.svg" width="30" height="30">
         </div>
 
@@ -276,7 +229,9 @@
             <div id="color-settings">
                 <form>
                     <label for="bcolor">Background color:</label><br>
-                    <input type="color" value=#ffffff id="bcolor" name="bcolor"><br>
+                    <input type="color" value=#ffffff id="bcolor" name="bcolor" oninput="onGridColorChange()"><br>
+                    <label for="bcolorupdate">Preview color:</label>
+                    <input type="checkbox" id="bcolorupdate" name="bcolorupdate" oninput="onGridColorChange()"><br><br>
                     <label for="gcolor">Grid color:</label><br>
                     <input type="color" value=#000000 id="gcolor" name="gcolor"><br>
                     <p><br>Expression colors:</p>
