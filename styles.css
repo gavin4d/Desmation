@@ -40,7 +40,7 @@ body {
 }
 
 #logo{
-    height: 7.5vh;
+    height: inherit;
 }
 
 .toolbar{
@@ -62,15 +62,20 @@ body {
     width: 0px;
     background: #2C405D;
     overflow-y: auto;
+    transition: width 0.5s;
+    /*animation-name: slideOut;
+    animation-play-state: paused;
+    animation-duration: 500ms;*/
 }
 
 #settings_container{
     height: 92.5vh;
+    white-space: nowrap;
 }
 
 #settings{
     padding: 25px;
-    display: inherit;
+    display: initial;
 }
 
 #color-settings{
@@ -85,8 +90,10 @@ body {
 
 #help{
     padding: 25px;
+    width: 150px;
     display: none;
     text-align: center;
+    white-space: normal;
 }
 
 .record_controls{
@@ -123,20 +130,17 @@ body {
     right: 0;
     height: 92.5vh;
     overflow-y: auto;
+    transition: left 0.5s;
 }
 
 #calculator{
     width:inherit;
-    height: 92.5vh;
+    height: inherit;
 }
 
 #image{
     float: left;
     display: none;
-}
-
-#screenshot{
-
 }
 
 #expression-colors input[type=color]{
@@ -170,6 +174,7 @@ label{
     padding: 15px;
     margin-top: 5px;
     border-radius: 0;
+    transition: background-color 200ms;
     font-family: atkinson_hyperlegibleregular;
 }
 
@@ -209,8 +214,8 @@ output{
 }
 
 #instructions{
-    padding: 10px 20px;
-
+    display: none;
+    padding: 10px 30px;
 }
 
 .text-format {
@@ -225,10 +230,6 @@ li{
 
 h2{
     color: powderblue;
-}
-
-#instructions{
-    display:  none;
 }
 
 .help-sidebar{

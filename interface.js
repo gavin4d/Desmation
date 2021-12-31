@@ -15,7 +15,7 @@ btnElt4.addEventListener('click', startRecord);
 
 function startRecord() {
     document.getElementById('calculator').style.display = 'none';
-    document.getElementById('image').style.display = 'inherit'
+    document.getElementById('image').style.display = 'inherit';
 
     backgroundColor = document.getElementById('bcolor').value;
     gridColor = document.getElementById('gcolor').value;
@@ -29,7 +29,7 @@ function startRecord() {
 
     zip.remove('output');
 
-    record()
+    record();
     
 }
 
@@ -44,7 +44,7 @@ expressionColors.addEventListener('change', onColorChange);
 calculator.observeEvent('change', onDesmosChange);
 
 var configForm = document.getElementById('config');
-configForm.addEventListener('change', configChange)
+configForm.addEventListener('change', configChange);
 
 function configChange() {
 
@@ -67,6 +67,7 @@ function configChange() {
 
     if (change != null) {
 
+        var changeNumber;
         switch (change) {
 
             case 'framerate':
@@ -81,10 +82,10 @@ function configChange() {
             case 'duration':
                 keepDuration = true;
                 if (lastChange[0] != 0) {
-                    lastChange[1] = lastChange[0]
-                    lastChange[0] = 0
+                    lastChange[1] = lastChange[0];
+                    lastChange[0] = 0;
                 }
-                var changeNumber = lastChange[0];
+                changeNumber = lastChange[0];
                 if (lastChange[0] == 0) changeNumber = lastChange[1];
                 // change number of frames
                 config[2] = Math.floor(config[1]*config[0]);
@@ -111,7 +112,7 @@ function configChange() {
                 document.getElementById(configIds[1]).value = config[1];
                 break;*/
             case 'initalValue':
-                var changeNumber = lastChange[0];
+                changeNumber = lastChange[0];
                 if (lastChange[0] == 0) changeNumber = lastChange[1];
                 if (changeNumber == 1) {
                     // change step size
@@ -128,7 +129,7 @@ function configChange() {
                     lastChange[1] = lastChange[0];
                     lastChange[0] = 1;
                 }
-                var changeNumber = lastChange[0];
+                changeNumber = lastChange[0];
                 if (lastChange[0] == 1) changeNumber = lastChange[1];
                 if (changeNumber == 0) {
                     // change step size
@@ -149,7 +150,7 @@ function configChange() {
                     lastChange[1] = lastChange[0];
                     lastChange[0] = 2;
                 }
-                var changeNumber = lastChange[0];
+                changeNumber = lastChange[0];
                 if (lastChange[0] == 2) changeNumber = lastChange[1];
                 if (changeNumber == 0) {
                     // change final value

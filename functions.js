@@ -2,10 +2,9 @@ var config = [30,1,30,0,1,0.034482758620689655,800,800,10,10];
 var configIds = ['framerate','duration','numFrames','initalValue','finalValue','step','xPixels','yPixels','xMathSize','yMathSize'];
 
 var backgroundColor = 'ffffff';
-var gridColor = '000000'
-var xPixels
-config[6]
-var xMathSize
+var gridColor = '000000';
+var xPixels;
+var xMathSize;
 var fnId;
 var AnimateVarName;
 
@@ -69,7 +68,7 @@ function onDesmosChange() {
                 listElement.setAttribute("string", string);
                 listElement.setAttribute("fnId", expressionArray[i].id);
                 listElement.innerText = string.replace(/\\/g, "");
-                dropDown.appendChild(listElement)
+                dropDown.appendChild(listElement);
             }
         }
     }
@@ -82,9 +81,9 @@ function onGridColorChange() {
     backgroundColor = document.getElementById('bcolor').value;
     gridColor = document.getElementById('gcolor').value;
     if(document.getElementById('bcolorupdate').checked) {
-        graphPaper.setAttribute('style', 'font-size:16px;background: ' + backgroundColor + ';color: #000000;')
+        graphPaper.setAttribute('style', 'font-size:16px;background: ' + backgroundColor + ';color: #000000;');
     } else {
-        graphPaper.setAttribute('style', 'font-size:16px;background: #ffffff;color: #000000;')
+        graphPaper.setAttribute('style', 'font-size:16px;background: #ffffff;color: #000000;');
     }
 }
 
@@ -101,7 +100,7 @@ function onColorChange() {
                 color: item.value
             });
             //console.log(item.getAttribute('value'));
-        };
+        }
     }
     calculator.observeEvent('change', onDesmosChange);
 
@@ -115,11 +114,11 @@ function downloadZip() {
     var indicator = document.getElementById('record-indicator');
     indicator.textContent = 'Generating download...';
     zip.generateAsync({type:"blob"}).then(function (blob) {
-        download(URL.createObjectURL(blob), "output.zip")
+        download(URL.createObjectURL(blob), "output.zip");
         indicator.textContent = 'Downloaded';
     }, function (err) {
         indicator.textContent = err;
-    })
+    });
 }
 
 function download (path, filename) {
@@ -129,11 +128,11 @@ function download (path, filename) {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-}; 
+}
 
 function captureScreenshot () {
     document.getElementById('calculator').style.display = 'none';
-    document.getElementById('image').style.display = 'inherit'
+    document.getElementById('image').style.display = 'inherit';
 
     onGridColorChange();
 
@@ -147,7 +146,7 @@ function captureScreenshot () {
         height: config[7],
         mathBounds: { left: (-config[8]/2), right: (config[8]/2), top: (config[9]/2), bottom:(-config[9]/2) }
     }, function (data) {
-        var image = document.getElementById('image')
+        var image = document.getElementById('image');
         image.innerHTML = data;
         changeSvgColors(image);
         zip.file('output/preview.svg', image.innerHTML);
@@ -189,10 +188,10 @@ function recordRepeat(data) {
 
     if (frameNumber < config[2]) {
 
-        record()
+        record();
 
     } else {
-        frameNumber = 0
+        frameNumber = 0;
         zip.file('output/Convert to mp4.sh', 'ffmpeg -r '+ config[0] +' -i frame_%05d.svg -c:v libx264 output.mp4');
         var indicator = document.getElementById('record-indicator');
         indicator.textContent = 'Ready to download';
@@ -242,7 +241,7 @@ function changeSvgColors(svg) {
 function onMouseOver(sender) {
     
     if (sender.id != selectedTab) {
-            sender.style.backgroundColor = '#182c48'
+            sender.style.backgroundColor = '#182c48';
     }
 
 }
@@ -250,7 +249,7 @@ function onMouseOver(sender) {
 function onMouseOut(sender) {
     
     if (sender.id != selectedTab) {
-            sender.style.backgroundColor = '#1D3557'
+            sender.style.backgroundColor = '#1D3557';
     }
 
 }
@@ -285,7 +284,7 @@ function onButtonPress(id) {
         instructions.style.display = 'none';
         document.getElementsByClassName('l-nav')[0].style.width = '0px';
         document.getElementsByClassName('l-page')[0].style.left = '60px';
-        selectedTab = "none"
+        selectedTab = "none";
     } else {
 
         selectedTab = id;
@@ -299,11 +298,11 @@ function onButtonPress(id) {
             settings.style.display = 'inherit';
             calculator.style.display = 'inherit';
             record.style.display = 'none';
-            color_settings.style.display = 'none'
+            color_settings.style.display = 'none';
             help.style.display = 'none';
             instructions.style.display = 'none';
         } else if (id == "color-button") {
-            settings.style.display = 'none'
+            settings.style.display = 'none';
             calculator.style.display = 'inherit';
             record.style.display = 'none';
             color_settings.style.display = 'inherit';
