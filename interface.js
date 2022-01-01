@@ -74,6 +74,9 @@ function configChange() {
                 if (keepDuration) { // change number of frames
                     config[2] = Math.floor(config[1]*config[0]);
                     document.getElementById(configIds[2]).textContent = config[2];
+                    // change step size
+                    config[5] = (config[4]-config[3])/(config[2]-1);
+                    document.getElementById(configIds[5]).value = config[5];
                 } else { // change duration
                     config[1] = config[2]/config[0];
                     document.getElementById(configIds[1]).value = config[1];
@@ -146,6 +149,7 @@ function configChange() {
 
                 break;
             case 'step':
+                keepDuration = false;
                 if (lastChange[0] != 2) {
                     lastChange[1] = lastChange[0];
                     lastChange[0] = 2;
