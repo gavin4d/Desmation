@@ -27,10 +27,6 @@ body {
     background: #1D3557;
 }
 
-.l-site{
-    height: 100%;
-}
-
 .top-bar{
     position: absolute;
     top: 0px;
@@ -49,6 +45,7 @@ body {
     top: 7.5vh;
     width: 60px;
     height: 92.5vh;
+    overflow-y: auto;
 }
 
 #spacer{
@@ -62,7 +59,8 @@ body {
     width: 0px;
     background: #2C405D;
     overflow-y: auto;
-    transition: width 0.5s;
+    overflow-x: hidden;
+    transition: width 0.3s;
     /*animation-name: slideOut;
     animation-play-state: paused;
     animation-duration: 500ms;*/
@@ -130,7 +128,7 @@ body {
     right: 0;
     height: 92.5vh;
     overflow-y: auto;
-    transition: left 0.5s;
+    transition: left 0.3s;
 }
 
 #calculator{
