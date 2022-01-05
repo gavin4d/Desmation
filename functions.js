@@ -1,5 +1,5 @@
-var config = [30,1,30,0,1,0.034482758620689655,800,800,10,10];
-var configIds = ['framerate','duration','numFrames','initalValue','finalValue','step','xPixels','yPixels','xMathSize','yMathSize'];
+var config = [30,1,30,0,1,0.034482758620689655,800,800,1,10,10];
+var configIds = ['framerate','duration','numFrames','initalValue','finalValue','step','xPixels','yPixels','gscale','xMathSize','yMathSize'];
 
 var backgroundColor = 'ffffff';
 var gridColor = '000000';
@@ -142,17 +142,21 @@ function captureScreenshot () {
     calculator.asyncScreenshot({
         mode: 'stretch',
         format: 'svg',
-        width: config[6],
-        height: config[7],
-        mathBounds: { left: (-config[8]/2), right: (config[8]/2), top: (config[9]/2), bottom:(-config[9]/2) }
-    }, function (data) {
-        var image = document.getElementById('image');
-        image.innerHTML = data;
-        changeSvgColors(image);
-        zip.file('output/preview.svg', image.innerHTML);
-        indicator.textContent = 'Ready to download';
-    });
+        width: config[6]/config[8],
+        height: config[7]/config[8],
+        targetPixelRatio: config[8],
+        mathBounds: { left: (-config[9]/2), right: (config[9]/2), top: (config[10]/2), bottom:(-config[10]/2) }
+    }, displayImage);
+}
 
+function displayImage(data) {
+    var indicator = document.getElementById('record-indicator');
+    var image = document.getElementById('image');
+    image.innerHTML = data;
+    resizeImage(image);
+    changeSvgColors(image);
+    zip.file('output/preview.svg', image.innerHTML);
+    indicator.textContent = 'Ready to download';
 }
 
 //download(URL.createObjectURL(new Blob([changeSvgColors(data)], {type: "image/svg"})), "output.svg")
@@ -167,9 +171,10 @@ function record() {
     calculator.asyncScreenshot({
         mode: 'stretch',
         format: 'svg',
-        width: config[6],
-        height: config[7],
-        mathBounds: { left: (-config[8]/2), right: (config[8]/2), top: (config[9]/2), bottom:(-config[9]/2) }
+        width: config[6]/config[8],
+        height: config[7]/config[8],
+        targetPixelRatio: config[8],
+        mathBounds: { left: (-config[9]/2), right: (config[9]/2), top: (config[10]/2), bottom:(-config[10]/2) }
     }, recordRepeat);
 
 }
