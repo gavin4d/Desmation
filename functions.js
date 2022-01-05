@@ -1,4 +1,4 @@
-var config = [30,1,30,0,1,0.034482758620689655,800,800,1,10,10];
+var config = [30,1,30,0,1,0.034482758620689655,1920,1080,1,16,9];
 var configIds = ['framerate','duration','numFrames','initalValue','finalValue','step','xPixels','yPixels','gscale','xMathSize','yMathSize'];
 
 var backgroundColor = 'ffffff';
@@ -106,9 +106,6 @@ function onColorChange() {
 
 }
 
-
-
-
 function downloadZip() {
 
     var indicator = document.getElementById('record-indicator');
@@ -153,7 +150,6 @@ function displayImage(data) {
     var indicator = document.getElementById('record-indicator');
     var image = document.getElementById('image');
     image.innerHTML = data;
-    resizeImage(image);
     changeSvgColors(image);
     zip.file('output/preview.svg', image.innerHTML);
     indicator.textContent = 'Ready to download';
