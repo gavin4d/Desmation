@@ -24,6 +24,8 @@ function onDesmosChange() {
     expressionColors.innerHTML = '';
 
     var dropDown = document.getElementById('animationVar');
+    var selected_string = dropDown.value;
+    //if (dropDown.value != null) selected_string = dropDown.value.getAttribute("string");
     dropDown.innerHTML = '';
 
     for (var i = 0; i < expressionArray.length; i++) {
@@ -69,10 +71,10 @@ function onDesmosChange() {
                 listElement.setAttribute("fnId", expressionArray[i].id);
                 listElement.innerText = string.replace(/\\/g, "");
                 dropDown.appendChild(listElement);
+                if (string == selected_string) dropDown.value = string;
             }
         }
     }
-
 
 }
 

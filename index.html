@@ -221,34 +221,34 @@
         <div class="l-nav" id="settings_container">
             <div id="settings">
                 <form id="config">
-                    <label for="framerate">Framerate:</label><br>
+                    <label for="framerate" title="Number of frames per second of video">Framerate:</label><br>
                     <input type="number" step="any" value=30 id="framerate" name="framerate"><br>
-                    <label for="duration">Duration:</label><br>
+                    <label for="duration" title="Length of video in seconds">Duration:</label><br>
                     <input type="number" step="any" value=1 id="duration" name="duration"><br><br>
                     <!--<label for="lockDuration">Lock duration:</label>
                     <input type="checkbox" checked=true id="lockDuration" name="lockDuration"><br>-->
-                    <label for="initalValue">Inital value:</label><br>
+                    <label for="initalValue" title="The starting value of the selected variable">Inital value:</label><br>
                     <input type="number" step="any" value=0 id="initalValue" name="initalValue"><br>
-                    <label for="finalValue">Final value:</label><br>
+                    <label for="finalValue" title="The ending value of the selected variable">Final value:</label><br>
                     <input type="number" step="any" value=1 id="finalValue" name="finalValue"><br>
-                    <label for="step">Step size:</label><br>
+                    <label for="step" title="Amount the selected variable increases each frame">Step size:</label><br>
                     <input type="number" step="any" value=0.034482758620689655 id="step" name="step"><br><br>
-                    <label for="numFrames">Number of frames:</label><br>
+                    <label for="numFrames" title="Total number of frame to be created">Number of frames:</label><br>
                     <output type="number" id="numFrames" name="numFrames">30</output><br><br>
-                    <label for="animationVar">Animated variable:</label><br>
+                    <label for="animationVar" title="Variable to be animated">Animated variable:</label><br>
                     <select id="animationVar" name="animationVar">
                     </select><br><br>
-                    <label for="xPixels">X Pixels:</label><br>
+                    <label for="xPixels" title="Horizontal width of image in pixel">X Pixels:</label><br>
                     <input type="number" value=1920 id="xPixels" name="xPixels"><br>
-                    <label for="yPixels">Y Pixels:</label><br>
+                    <label for="yPixels" title="Vertical height of image in pixel">Y Pixels:</label><br>
                     <input type="number" value=1080 id="yPixels" name="yPixels"><br><br>
-                    <label for="xMathSize">X Math size:</label><br>
+                    <label for="xMathSize" title="Horizontal width of the graphpaper to be rendered in units">X Math size:</label><br>
                     <input type="number" value=16 id="xMathSize" name="xMathSize"><br>
-                    <label for="yMathSize">Y Math size:</label><br>
+                    <label for="yMathSize" title="Vertical hieght of the graphpaper to be rendered in units">Y Math size:</label><br>
                     <input type="number" value=9 id="yMathSize" name="yMathSize"><br>
-                    <label for="squareUnits">1:1 unit ratio</label>
+                    <label for="squareUnits" title="Prevents stretching the graph to fit the image">1:1 unit ratio:</label>
                     <input type="checkbox" checked id="squareUnits" name="squareUnits"><br><br>
-                    <label for="gscale">Grid scale:</label><br>
+                    <label for="gscale" title="Amount to scale the grid and text">Grid scale:</label><br>
                     <input type="number" value=1 id="gscale" name="gscale"><br>
                     
                 </form>
