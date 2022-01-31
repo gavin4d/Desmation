@@ -153,8 +153,8 @@ function displayImage(data) {
     var image = document.getElementById('image');
     image.innerHTML = data;
     changeSvgColors(image);
-    zip.file('output/preview.svg', image.innerHTML);
-    indicator.textContent = 'Ready to download';
+    zip.file('preview.svg', image.innerHTML);
+    indicator.textContent = 'Preview captured';
 }
 
 //download(URL.createObjectURL(new Blob([changeSvgColors(data)], {type: "image/svg"})), "output.svg")
@@ -184,7 +184,7 @@ function recordRepeat(data) {
 
     //sessionStorage.setItem('Frame_'+ ('0000' + frameNumber).slice(-4), data);
     changeSvgColors(image);
-    zip.file('output/frame_'+ ('00000' + frameNumber).slice(-5) + '.svg', image.innerHTML);
+    zip.file('frames/frame_'+ ('00000' + frameNumber).slice(-5) + '.svg', image.innerHTML);
 
     
     frameNumber ++;
@@ -195,7 +195,7 @@ function recordRepeat(data) {
 
     } else {
         frameNumber = 0;
-        zip.file('output/Convert to mp4.sh', 'ffmpeg -r '+ config[0] +' -i frame_%05d.svg -c:v libx264 output.mp4');
+        zip.file('Convert to mp4.sh', 'ffmpeg -r '+ config[0] +' -i frames/frame_%05d.svg -c:v libx264 output.mp4');
         var indicator = document.getElementById('record-indicator');
         indicator.textContent = 'Ready to download';
     }
