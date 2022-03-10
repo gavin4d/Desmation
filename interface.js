@@ -1,5 +1,6 @@
 var lastChange = [0,1];
 var keepDuration = true;
+var keepX = true;
 
 var elt = document.getElementById('calculator');
 var calculator = Desmos.GraphingCalculator(elt,{
@@ -33,6 +34,17 @@ function startRecord() {
     
 }
 
+function updateMathSize(isX) {
+    if (!document.getElementById('squareUnits').checked) return;
+    if (isX) {
+        config[10] = config[9] * config[7] / config[6];
+        document.getElementById(configIds[10]).value = config[10];
+    } else {
+        config[9] = config[10] * config[6] / config[7];
+        document.getElementById(configIds[9]).value = config[9];
+    }
+}
+
 var btnElt5 = document.getElementById('download-button');
 btnElt5.addEventListener('click', downloadZip);
 
@@ -42,6 +54,9 @@ expressionColors.addEventListener('change', onColorChange);
 //document.getElementById('gcolor').addEventListener('change', onColorChange);
 
 calculator.observeEvent('change', onDesmosChange);
+
+var squareUnits = document.getElementById('squareUnits');
+squareUnits.addEventListener('click', updateMathSize.bind(this, keepX));
 
 var configForm = document.getElementById('config');
 configForm.addEventListener('change', configChange);
@@ -63,7 +78,7 @@ function configChange() {
 
         //console.log(config[i]);
 
-    }    
+    }
 
     if (change != null) {
 
@@ -169,7 +184,20 @@ function configChange() {
                     document.getElementById(configIds[1]).value = config[1];
                 }
                 break;
-
+            case 'xPixels':
+                updateMathSize(keepX);
+                break;
+            case 'yPixels':
+                updateMathSize(keepX);
+                break;
+            case 'xMathSize':
+                keepX = true;
+                updateMathSize(keepX);
+                break;
+            case 'yMathSize':
+                keepX = false;
+                updateMathSize(keepX);
+                break;
 
         }
 
@@ -177,6 +205,4 @@ function configChange() {
 
     }
 
-
-    
 }

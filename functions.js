@@ -1,5 +1,5 @@
-var config = [30,1,30,0,1,0.034482758620689655,800,800,10,10];
-var configIds = ['framerate','duration','numFrames','initalValue','finalValue','step','xPixels','yPixels','xMathSize','yMathSize'];
+var config = [30,1,30,0,1,0.034482758620689655,1920,1080,1,16,9];
+var configIds = ['framerate','duration','numFrames','initalValue','finalValue','step','xPixels','yPixels','gscale','xMathSize','yMathSize'];
 
 var backgroundColor = 'ffffff';
 var gridColor = '000000';
@@ -24,6 +24,8 @@ function onDesmosChange() {
     expressionColors.innerHTML = '';
 
     var dropDown = document.getElementById('animationVar');
+    var selected_string = dropDown.value;
+    //if (dropDown.value != null) selected_string = dropDown.value.getAttribute("string");
     dropDown.innerHTML = '';
 
     for (var i = 0; i < expressionArray.length; i++) {
@@ -69,10 +71,10 @@ function onDesmosChange() {
                 listElement.setAttribute("fnId", expressionArray[i].id);
                 listElement.innerText = string.replace(/\\/g, "");
                 dropDown.appendChild(listElement);
+                if (string == selected_string) dropDown.value = string;
             }
         }
     }
-
 
 }
 
@@ -105,9 +107,6 @@ function onColorChange() {
     calculator.observeEvent('change', onDesmosChange);
 
 }
-
-
-
 
 function downloadZip() {
 
@@ -142,17 +141,20 @@ function captureScreenshot () {
     calculator.asyncScreenshot({
         mode: 'stretch',
         format: 'svg',
-        width: config[6],
-        height: config[7],
-        mathBounds: { left: (-config[8]/2), right: (config[8]/2), top: (config[9]/2), bottom:(-config[9]/2) }
-    }, function (data) {
-        var image = document.getElementById('image');
-        image.innerHTML = data;
-        changeSvgColors(image);
-        zip.file('output/preview.svg', image.innerHTML);
-        indicator.textContent = 'Ready to download';
-    });
+        width: config[6]/config[8],
+        height: config[7]/config[8],
+        targetPixelRatio: config[8],
+        mathBounds: { left: (-config[9]/2), right: (config[9]/2), top: (config[10]/2), bottom:(-config[10]/2) }
+    }, displayImage);
+}
 
+function displayImage(data) {
+    var indicator = document.getElementById('record-indicator');
+    var image = document.getElementById('image');
+    image.innerHTML = data;
+    changeSvgColors(image);
+    zip.file('preview.svg', image.innerHTML);
+    indicator.textContent = 'Preview captured';
 }
 
 //download(URL.createObjectURL(new Blob([changeSvgColors(data)], {type: "image/svg"})), "output.svg")
@@ -167,9 +169,10 @@ function record() {
     calculator.asyncScreenshot({
         mode: 'stretch',
         format: 'svg',
-        width: config[6],
-        height: config[7],
-        mathBounds: { left: (-config[8]/2), right: (config[8]/2), top: (config[9]/2), bottom:(-config[9]/2) }
+        width: config[6]/config[8],
+        height: config[7]/config[8],
+        targetPixelRatio: config[8],
+        mathBounds: { left: (-config[9]/2), right: (config[9]/2), top: (config[10]/2), bottom:(-config[10]/2) }
     }, recordRepeat);
 
 }
@@ -181,7 +184,7 @@ function recordRepeat(data) {
 
     //sessionStorage.setItem('Frame_'+ ('0000' + frameNumber).slice(-4), data);
     changeSvgColors(image);
-    zip.file('output/frame_'+ ('00000' + frameNumber).slice(-5) + '.svg', image.innerHTML);
+    zip.file('frames/frame_'+ ('00000' + frameNumber).slice(-5) + '.svg', image.innerHTML);
 
     
     frameNumber ++;
@@ -192,7 +195,7 @@ function recordRepeat(data) {
 
     } else {
         frameNumber = 0;
-        zip.file('output/Convert to mp4.sh', 'ffmpeg -r '+ config[0] +' -i frame_%05d.svg -c:v libx264 output.mp4');
+        zip.file('Convert to mp4.sh', 'ffmpeg -r '+ config[0] +' -i frames/frame_%05d.svg -c:v libx264 output.mp4');
         var indicator = document.getElementById('record-indicator');
         indicator.textContent = 'Ready to download';
     }
