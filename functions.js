@@ -1,5 +1,5 @@
-var config = [30,1,30,0,1,0.034482758620689655,1920,1080,1,16,9];
-var configIds = ['framerate','duration','numFrames','initalValue','finalValue','step','xPixels','yPixels','gscale','xMathSize','yMathSize'];
+var config = [30,1,30,0,1,0.034482758620689655,1920,1080,1,16,9,0,0];
+var configIds = ['framerate','duration','numFrames','initalValue','finalValue','step','xPixels','yPixels','gscale','xMathSize','yMathSize','xCam','yCam'];
 
 var backgroundColor = 'ffffff';
 var gridColor = '000000';
@@ -30,19 +30,19 @@ function onDesmosChange() {
 
     for (var i = 0; i < expressionArray.length; i++) {
 
-        var colorItem1 = document.createElement('label');
-        colorItem1.setAttribute('for', 'color' + (i+1));
-        colorItem1.innerText = (i+1) + ': ';
-        expressionColors.appendChild(colorItem1);
-        var colorItem2 = document.createElement('input');
-        colorItem2.setAttribute('type', 'color');
-        colorItem2.setAttribute('id', 'color' + (i+1));
-        colorItem2.setAttribute('name', 'color' + (i+1));
-        colorItem2.setAttribute('value', expressionArray[i].color);
-        colorItem2.setAttribute('fnId', expressionArray[i].id);
-        expressionColors.appendChild(colorItem2);
-        var colorItem3 = document.createElement('br');
-        expressionColors.appendChild(colorItem3);
+    var colorItem1 = document.createElement('label');
+    colorItem1.setAttribute('for', 'color' + (i+1));
+    colorItem1.innerText = (i+1) + ': ';
+    expressionColors.appendChild(colorItem1);
+    var colorItem2 = document.createElement('input');
+    colorItem2.setAttribute('type', 'color');
+    colorItem2.setAttribute('id', 'color' + (i+1));
+    colorItem2.setAttribute('name', 'color' + (i+1));
+    colorItem2.setAttribute('value', expressionArray[i].color);
+    colorItem2.setAttribute('fnId', expressionArray[i].id);
+    expressionColors.appendChild(colorItem2);
+    var colorItem3 = document.createElement('br');
+    expressionColors.appendChild(colorItem3);
 
         //if (colorItem != null) {
         //    console.log(colorItem)
@@ -144,7 +144,7 @@ function captureScreenshot () {
         width: config[6]/config[8],
         height: config[7]/config[8],
         targetPixelRatio: config[8],
-        mathBounds: { left: (-config[9]/2), right: (config[9]/2), top: (config[10]/2), bottom:(-config[10]/2) }
+        mathBounds: { left: (-config[9]/2) + config[11], right: (config[9]/2) + config[11], top: (config[10]/2) + config[12], bottom:(-config[10]/2) + config[12] }
     }, displayImage);
 }
 
@@ -172,7 +172,7 @@ function record() {
         width: config[6]/config[8],
         height: config[7]/config[8],
         targetPixelRatio: config[8],
-        mathBounds: { left: (-config[9]/2), right: (config[9]/2), top: (config[10]/2), bottom:(-config[10]/2) }
+        mathBounds: { left: (-config[9]/2) + config[11], right: (config[9]/2) + config[11], top: (config[10]/2) + config[12], bottom:(-config[10]/2) + config[12] }
     }, recordRepeat);
 
 }
